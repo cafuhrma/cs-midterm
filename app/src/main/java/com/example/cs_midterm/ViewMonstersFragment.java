@@ -31,5 +31,14 @@ public class ViewMonstersFragment extends Fragment {
                         .navigate(R.id.action_viewMonstersFragment_to_HomeFragment);
             }
         });
+
+        // switch from view monsters screen to create monster screen
+        view.findViewById(R.id.button_createMonster).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(ViewMonstersFragment.this)
+                        .navigate(R.id.action_viewMonstersFragment_to_createMonsterFragment);
+            }
+        });
     }
 }

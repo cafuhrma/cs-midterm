@@ -31,5 +31,21 @@ public class CreateEncountersFragment extends Fragment {
                         .navigate(R.id.action_createEncountersFragment_to_HomeFragment);
             }
         });
+        // switch from create encounters screen to random encounters screen
+        view.findViewById(R.id.button_randomList).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(CreateEncountersFragment.this)
+                        .navigate(R.id.action_createEncountersFragment_to_randomEncountersFragment);
+            }
+        });
+        // switch from create encounters screen to custom encounter screen
+        view.findViewById(R.id.button_customEncounter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(CreateEncountersFragment.this)
+                        .navigate(R.id.action_createEncountersFragment_to_customEncounterFragment);
+            }
+        });
     }
 }

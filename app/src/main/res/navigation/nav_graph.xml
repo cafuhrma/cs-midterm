@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_viewMonstersFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_viewMonstersFragment_to_createMonsterFragment"
+            app:destination="@id/createMonsterFragment" />
     </fragment>
     <fragment
         android:id="@+id/createEncountersFragment"
@@ -48,5 +51,38 @@
         <action
             android:id="@+id/action_createEncountersFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_createEncountersFragment_to_randomEncountersFragment"
+            app:destination="@id/randomEncountersFragment" />
+        <action
+            android:id="@+id/action_createEncountersFragment_to_customEncounterFragment"
+            app:destination="@id/customEncounterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createMonsterFragment"
+        android:name="com.example.cs_midterm.CreateMonsterFragment"
+        android:label="fragment_create_monster"
+        tools:layout="@layout/fragment_create_monster" >
+        <action
+            android:id="@+id/action_createMonsterFragment_to_viewMonstersFragment"
+            app:destination="@id/viewMonstersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/randomEncountersFragment"
+        android:name="com.example.cs_midterm.RandomEncountersFragment"
+        android:label="fragment_random_encounters"
+        tools:layout="@layout/fragment_random_encounters" >
+        <action
+            android:id="@+id/action_randomEncountersFragment_to_createEncountersFragment"
+            app:destination="@id/createEncountersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customEncounterFragment"
+        android:name="com.example.cs_midterm.CustomEncounterFragment"
+        android:label="fragment_custom_encounter"
+        tools:layout="@layout/fragment_custom_encounter" >
+        <action
+            android:id="@+id/action_customEncounterFragment_to_createEncountersFragment"
+            app:destination="@id/createEncountersFragment" />
     </fragment>
 </navigation>
