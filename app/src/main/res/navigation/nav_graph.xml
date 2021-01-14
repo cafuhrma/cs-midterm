@@ -3,26 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/HomeFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.cs_midterm.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/HomeFragment"
+        android:name="com.example.cs_midterm.HomeFragment"
+        android:label="home_fragment_label"
+        tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_HomeFragment_to_ViewEncountersFragment"
+            app:destination="@id/ViewEncountersFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_viewMonstersFragment"
+            app:destination="@id/viewMonstersFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_createEncountersFragment"
+            app:destination="@id/createEncountersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.cs_midterm.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/ViewEncountersFragment"
+        android:name="com.example.cs_midterm.ViewEncountersFragment"
+        android:label="view_encounters_fragment_label"
+        tools:layout="@layout/fragment_view_encounters">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_ViewEncountersFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewMonstersFragment"
+        android:name="com.example.cs_midterm.ViewMonstersFragment"
+        android:label="fragment_view_monsters"
+        tools:layout="@layout/fragment_view_monsters" >
+        <action
+            android:id="@+id/action_viewMonstersFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEncountersFragment"
+        android:name="com.example.cs_midterm.CreateEncountersFragment"
+        android:label="fragment_create_encounters"
+        tools:layout="@layout/fragment_create_encounters" >
+        <action
+            android:id="@+id/action_createEncountersFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>
