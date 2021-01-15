@@ -22,14 +22,4 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
     }
-
-    private void configureMyMonstersButton() {
-        Button btnToMonsters = (Button) findViewById(R.id.button_my_monsters);
-        btnToMonsters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ViewMonstersFragment.class));
-            }
-        });
-    }
 }
