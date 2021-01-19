@@ -7,6 +7,50 @@
     android:layout_height="match_parent"
     tools:context=".CreateEncountersFragment" >
 
+    <Spinner
+        android:id="@+id/spinner_difficulty"
+        android:layout_width="200dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_partySize" />
+
+    <Spinner
+        android:id="@+id/spinner_partySize"
+        android:layout_width="200dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_partyLevel" />
+
+    <TextView
+        android:id="@+id/textView_partyLevel3"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="60dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:text="@string/difficulty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_partyLevel2" />
+
+    <TextView
+        android:id="@+id/textView_partyLevel2"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="60dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:text="@string/party_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_partyLevel" />
+
     <Button
         android:id="@+id/button_backCreate"
         android:layout_width="360dp"
@@ -52,4 +96,26 @@
         app:layout_constraintBottom_toTopOf="@+id/button_randomList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_partyLevel"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:text="@string/party_level"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_partyLevel"
+        android:layout_width="200dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

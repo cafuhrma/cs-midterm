@@ -9,6 +9,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class CreateEncountersFragment extends Fragment {
 
@@ -47,5 +49,23 @@ public class CreateEncountersFragment extends Fragment {
                         .navigate(R.id.action_createEncountersFragment_to_customEncounterFragment);
             }
         });
+        // party level spinner
+        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.partyLevels));
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner levelSpinner = view.findViewById(R.id.spinner_partyLevel);
+        levelSpinner.setAdapter(levelAdapter);
+        // party size spinner
+        ArrayAdapter<String> sizeAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.partySize));
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sizeSpinner = view.findViewById(R.id.spinner_partySize);
+        sizeSpinner.setAdapter(sizeAdapter);
+        // difficulty spinner
+        ArrayAdapter<String> diffAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.difficulty));
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner diffSpinner = view.findViewById(R.id.spinner_difficulty);
+        diffSpinner.setAdapter(diffAdapter);
     }
 }
