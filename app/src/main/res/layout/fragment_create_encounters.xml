@@ -83,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_customEncounter"
+        android:id="@+id/button_buildEncounter"
         android:layout_width="360dp"
         android:layout_height="70dp"
         android:layout_marginStart="10dp"
@@ -91,7 +91,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/create_encounter"
+        android:text="@string/build_encounter"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toTopOf="@+id/button_randomList"
         app:layout_constraintEnd_toEndOf="parent"

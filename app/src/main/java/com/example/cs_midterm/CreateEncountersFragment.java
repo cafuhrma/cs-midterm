@@ -33,6 +33,7 @@ public class CreateEncountersFragment extends Fragment {
                         .navigate(R.id.action_createEncountersFragment_to_HomeFragment);
             }
         });
+
         // switch from create encounters screen to random encounters screen
         view.findViewById(R.id.button_randomList).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,26 +42,30 @@ public class CreateEncountersFragment extends Fragment {
                         .navigate(R.id.action_createEncountersFragment_to_randomEncountersFragment);
             }
         });
-        // switch from create encounters screen to custom encounter screen
-        view.findViewById(R.id.button_customEncounter).setOnClickListener(new View.OnClickListener() {
+
+        // switch from create encounters screen to build encounter screen
+        view.findViewById(R.id.button_buildEncounter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(CreateEncountersFragment.this)
-                        .navigate(R.id.action_createEncountersFragment_to_customEncounterFragment);
+                        .navigate(R.id.action_createEncountersFragment_to_buildEncounterFragment);
             }
         });
+
         // party level spinner
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.partyLevels));
         levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner levelSpinner = view.findViewById(R.id.spinner_partyLevel);
         levelSpinner.setAdapter(levelAdapter);
+
         // party size spinner
         ArrayAdapter<String> sizeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.partySize));
         levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner sizeSpinner = view.findViewById(R.id.spinner_partySize);
         sizeSpinner.setAdapter(sizeAdapter);
+
         // difficulty spinner
         ArrayAdapter<String> diffAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.difficulty));
