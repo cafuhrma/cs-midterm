@@ -26,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class BuildEncounterFragment extends Fragment {
     // TODO
-    private ArrayAdapter<Monster> monsterSearchAdapter;
+    private MonstersAdapter monsterSearchAdapter;
 
     @Override
     public View onCreateView(
@@ -76,7 +76,7 @@ public class BuildEncounterFragment extends Fragment {
 //        });
 //        Log.d("Bruh","You lookin good!");
         // monster name search filter
-        List<Monster> monsters = new ArrayList<>();
+        ArrayList<Monster> monsters = new ArrayList<>();
         // hard coded monsters for testing
         Monster goblin = new Monster();
         goblin.index = "goblin";
@@ -90,8 +90,7 @@ public class BuildEncounterFragment extends Fragment {
         bandit.xp = 25;
         monsters.add(goblin);
         monsters.add(bandit);
-        monsterSearchAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,
-                monsters);
+        monsterSearchAdapter = new MonstersAdapter(getActivity(), monsters);
         ListView monsterList = view.findViewById(R.id.listView_monsters);
         monsterList.setAdapter(monsterSearchAdapter);
         // Check for search query
