@@ -120,7 +120,6 @@
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
-        <item>Very Hard</item>
         <item>Deadly</item>
     </string-array>
 </resources>

@@ -5,23 +5,28 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
 import java.util.ArrayList;
 
-public class BuildEncounterFragment extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
-    private ArrayAdapter monsterSearchAdapter;
+public class BuildEncounterFragment extends Fragment {
+    // TODO
+    private ArrayAdapter<Monster> monsterSearchAdapter;
 
     @Override
     public View onCreateView(
@@ -42,33 +47,65 @@ public class BuildEncounterFragment extends Fragment {
                         .navigate(R.id.action_buildEncounterFragment_to_createEncountersFragment);
             }
         });
-
+        // create new encounter object
+        Encounter encounter;
+        // TODO
+//        // create Retrofit object for API use
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://www.dnd5eapi.co/api/")
+//                .build();
+//        Call<List> monsterCall = MonsterAPI.getMonsters();
+//        // display list of monsters
+//        ArrayList<Monster> monsters;
+//        monsterCall.enqueue(new Callback<List>() {
+//            @Override
+//            public void onResponse(Call<List> call, Response<List> response) {
+//
+//                if (response.isSuccessful()) {
+//                    List monsters = response.body();
+//                    Log.d("onResponse: ", monsters.get(3).getName().toString());
+//                } else {
+//                    Log.d("onResponse: ", "respnse...Failed");
+//                    return;
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List> call, Throwable t) {
+//                Log.d("OnFailure:", "Errror!");
+//            }
+//        });
+//        Log.d("Bruh","You lookin good!");
         // monster name search filter
-        EditText monsterSearch = view.findViewById(R.id.editText_monsterSearch);
+        List<Monster> monsters = new ArrayList<>();
+        // hard coded monsters for testing
+        Monster goblin = new Monster();
+        goblin.index = "goblin";
+        goblin.name = "Goblin";
+        goblin.challenge = 0.25;
+        goblin.xp = 50;
+        Monster bandit = new Monster();
+        bandit.index = "bandit";
+        bandit.name = "Bandit";
+        bandit.challenge = 0.125;
+        bandit.xp = 25;
+        monsters.add(goblin);
+        monsters.add(bandit);
+        monsterSearchAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,
+                monsters);
         ListView monsterList = view.findViewById(R.id.listView_monsters);
-        ArrayList<String> monsterNames = new ArrayList<>();
-        monsterNames.add("Aboleth");
-        monsterNames.add("Goblin");
-        monsterNames.add("Mimic");
-        monsterNames.add("Orc");
-
-        monsterSearchAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,
-                monsterNames);
         monsterList.setAdapter(monsterSearchAdapter);
+        // Check for search query
+        EditText monsterSearch = view.findViewById(R.id.editText_monsterSearch);
         monsterSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 (BuildEncounterFragment.this).monsterSearchAdapter.getFilter().filter(s);
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
     }

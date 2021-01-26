@@ -9,7 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.List;
+
 public class ViewEncountersFragment extends Fragment {
+
+    List<Encounter> myEncounters;
 
     @Override
     public View onCreateView(
