@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class BuildEncounterFragment extends Fragment {
         });
         // create new encounter object
         Encounter encounter;
-        // TODO
+        // TODO finsih API integration
 //        // create Retrofit object for API use
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://www.dnd5eapi.co/api/")
@@ -81,18 +83,31 @@ public class BuildEncounterFragment extends Fragment {
         Monster goblin = new Monster();
         goblin.index = "goblin";
         goblin.name = "Goblin";
-        goblin.challenge = 0.25;
+        goblin.challenge = "1/4";
         goblin.xp = 50;
         Monster bandit = new Monster();
         bandit.index = "bandit";
         bandit.name = "Bandit";
-        bandit.challenge = 0.125;
+        bandit.challenge = "1/8";
         bandit.xp = 25;
         monsters.add(goblin);
         monsters.add(bandit);
-        monsterSearchAdapter = new MonstersAdapter(getActivity(), monsters);
+        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, monsters);
         ListView monsterList = view.findViewById(R.id.listView_monsters);
+        // Assign adapter to ListView
         monsterList.setAdapter(monsterSearchAdapter);
+        //enables filtering for the contents of the given ListView
+        monsterList.setTextFilterEnabled(true);
+
+        monsterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // When clicked, show a toast with the TextView text
+                Monster monster = (Monster) parent.getItemAtPosition(position);
+                Toast.makeText(getActivity(),
+                        monster.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
         // Check for search query
         EditText monsterSearch = view.findViewById(R.id.editText_monsterSearch);
         monsterSearch.addTextChangedListener(new TextWatcher() {
@@ -100,11 +115,11 @@ public class BuildEncounterFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                (BuildEncounterFragment.this).monsterSearchAdapter.getFilter().filter(s);
+            public void afterTextChanged(Editable s) {
             }
             @Override
-            public void afterTextChanged(Editable s) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                monsterSearchAdapter.getFilter().filter(s.toString());
             }
         });
     }

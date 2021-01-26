@@ -7,11 +7,10 @@ import retrofit2.Retrofit;
 
 public class Monster { // implements ProficiencyAPI
     // member fields
-    public String index, name, size, type, subtype, alignment, hit_dice, senses, languages;
+    public String index, name, size, type, subtype, alignment, hit_dice, senses, languages, challenge;
     public String[] speed, damage_vulnerabilities, damage_resistances, damage_immunities, condition_immunities;
     public int armor_class, hit_points, xp;
     public int[] abilityScores;
-    public double challenge;
     public Call<List> proficiencies;
 
     // accessors
@@ -42,6 +41,9 @@ public class Monster { // implements ProficiencyAPI
     public String getLanguages() {
         return languages;
     }
+    public String getChallenge() {
+        return challenge;
+    }
     public String[] getSpeed() {
         return speed;
     }
@@ -69,10 +71,7 @@ public class Monster { // implements ProficiencyAPI
     public int[] getAbilityScores() {
         return abilityScores;
     }
-    public double getChallenge() {
-        return challenge;
-    }
-    // TODO
+    // TODO finish incorporating API for proficiencies
 //    public Call<List> getProficiencies() {
 //        // create Retrofit object for API use
 //        Retrofit retrofit = new Retrofit.Builder()
