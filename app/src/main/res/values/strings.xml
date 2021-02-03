@@ -123,4 +123,13 @@
         <item>Hard</item>
         <item>Deadly</item>
     </string-array>
+    <string-array name="monsterTabs">
+        <item>BASIC INFO</item>
+        <item>ATTRIBUTES</item>
+        <item>SAVES</item>
+        <item>SKILLS</item>
+        <item>OTHER INFO</item>
+        <item>FEATURES</item>
+        <item>ACTIONS</item>
+    </string-array>
 </resources>
