@@ -18,7 +18,7 @@ public class Proficiencies extends Monster{
 //        // create Retrofit object for API use
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://www.dnd5eapi.co/api/monsters/" + index + "/proficiencies").build();
-//        proficiency = ProficiencyAPI.getProficiency();
+//        proficiency = ProficiencyApi.getProficiency();
 //        return proficiency;
 //    }
 }

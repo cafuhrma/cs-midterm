@@ -4,7 +4,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface ProficienciesAPI {
+public interface ProficienciesApi {
     @GET("proficiencies")
     Call<List> getProficiencies();
 }
