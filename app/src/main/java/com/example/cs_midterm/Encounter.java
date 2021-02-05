@@ -5,11 +5,22 @@ import java.util.List;
 
 public class Encounter {
     // member fields
-    List<Monster> monsters = new ArrayList<>();
-    int totalXP;
-    int partySize;
-    int partyLevel;
+    ArrayList<Monster> monsters;
+    int totalXP, partySize, partyLevel;
     String difficulty;
+
+    // class constructor
+    public Encounter(int _partySize, int _partyLevel, String _difficulty) {
+        monsters = new ArrayList<>();
+        partySize = _partySize;
+        partyLevel = _partyLevel;
+        difficulty = _difficulty;
+        totalXP = calulateXP();
+    }
+
+    public ArrayList<Monster> getMonsters() {
+        return monsters;
+    }
 
     // calculate the total amount of xp for the encounter
     public int calulateXP() {

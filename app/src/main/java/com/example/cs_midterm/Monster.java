@@ -5,13 +5,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
-public class Monster { // implements ProficiencyAPI
-    // member fields
-    public String index, name, size, type, subtype, alignment, hit_dice, senses, languages, challenge;
-    public String[] speed, damage_vulnerabilities, damage_resistances, damage_immunities, condition_immunities;
-    public int armor_class, hit_points, xp;
-    public int[] abilityScores;
-    public Call<List> proficiencies;
+public class Monster implements ProficienciesAPI { // implements ProficienciesAPI
+    // public member fields
+    public String index, name, size, type, subtype, alignment, hit_dice, languages, challenge, url;
+    public String[] damage_vulnerabilities, damage_resistances, damage_immunities, condition_immunities;
+    public int armor_class, hit_points, strength, dexterity, constitution, intelligence, wisdom, charisma, xp;
+    public Call<List> speed, proficiencies, senses, special_abilities, actions, legendary_actions;
 
     // accessors
     public String getIndex() {
@@ -35,18 +34,13 @@ public class Monster { // implements ProficiencyAPI
     public String getHit_dice() {
         return hit_dice;
     }
-    public String getSenses() {
-        return senses;
-    }
     public String getLanguages() {
         return languages;
     }
     public String getChallenge() {
         return challenge;
     }
-    public String[] getSpeed() {
-        return speed;
-    }
+    public String getUrl() { return url; }
     public String[] getDamage_vulnerabilities() {
         return damage_vulnerabilities;
     }
@@ -68,16 +62,40 @@ public class Monster { // implements ProficiencyAPI
     public int getXp() {
         return xp;
     }
-    public int[] getAbilityScores() {
-        return abilityScores;
+    public int getStrength() { return strength; }
+    public int getDexterity() { return dexterity; }
+    public int getConstitution() { return constitution; }
+    public int getIntelligence() { return intelligence; }
+    public int getWisdom() { return wisdom; }
+    public int getCharisma() { return charisma; }
+
+    // TODO finish incorporating APIs
+
+    public Call<List> getSenses() {
+
+        return senses;
     }
-    // TODO finish incorporating API for proficiencies
-//    public Call<List> getProficiencies() {
+    public Call<List> getProficiencies() {
 //        // create Retrofit object for API use
 //        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://www.dnd5eapi.co/api/monsters/" + index)
-//                .build();
-//        proficiencies = ProficiencyAPI.getProficiencies();
-//        return proficiencies;
-//    }
+//                .baseUrl("https://www.dnd5eapi.co/api/monsters/" + index).build();
+//        proficiencies = ProficienciesAPI.getProficiencies();
+        return proficiencies;
+    }
+    public Call<List> getSpeed() {
+
+        return speed;
+    }
+    public Call<List> getSpecial_abilities() {
+
+        return special_abilities;
+    }
+    public Call<List> getActions() {
+
+        return actions;
+    }
+    public Call<List> getLegendary_actions() {
+
+        return legendary_actions;
+    }
 }

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class RandomEncountersFragment extends Fragment {
-
+    Encounter encounter;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -24,6 +24,7 @@ public class RandomEncountersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // return to create encounters screen
         view.findViewById(R.id.button_backRandomList).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,5 +32,8 @@ public class RandomEncountersFragment extends Fragment {
                         .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment);
             }
         });
+
+        // initialize encounter
+        encounter = CreateEncountersFragment.getEncounter();
     }
 }
