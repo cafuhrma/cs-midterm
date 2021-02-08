@@ -59,7 +59,7 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
         Monster monster = getItem(position);
         // Populate the data into the template view using the data object
         holder.name.setText(monster.getName());
-        String cr = "CR: " + monster.getChallenge();
+        String cr = "CR: " + monster.getChallenge_rating();
         holder.cr.setText(cr);
         String xp = "XP: " + monster.getXp();
         holder.xp.setText(xp);

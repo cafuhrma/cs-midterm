@@ -6,5 +6,5 @@ import retrofit2.http.GET;
 
 public interface ProficienciesApi {
     @GET("proficiencies")
-    Call<List> getProficiencies();
+    Call<List<Proficiencies>> getProficiencies();
 }

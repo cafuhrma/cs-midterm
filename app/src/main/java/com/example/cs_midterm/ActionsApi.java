@@ -5,7 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface ResultsApi {
-    @GET("results")
-    Call<List<Result>> getResults();
+public interface ActionsApi {
+    @GET("actions")
+    Call<List<Action>> getActions();
 }

@@ -12,42 +12,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Monsters {
     ResultsApi resultsApi;
     int count;
-    ArrayList<Results> results;
+    ArrayList<Result> results;
 
     // accessors
     public int getCount() {
         return count;
     }
-    public ArrayList<Results> getResults() {
+    public ArrayList<Result> getResults() {
         // create Retrofit object for API use
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.dnd5eapi.co/api/")
+                .baseUrl("https://www.dnd5eapi.co/api/monsters/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         resultsApi = retrofit.create(ResultsApi.class);
 
-        Call<List<Results>> call = resultsApi.getResults();
+        Call<List<Result>> call = resultsApi.getResults();
 
-        // populate list of monsters from the API
-        call.enqueue(new Callback<List<Results>>() {
+        // populate list of results from the API
+        call.enqueue(new Callback<List<Result>>() {
             @Override
-            public void onResponse(Call<List<Results>> call, Response<List<Results>> response) {
+            public void onResponse(Call<List<Result>> call, Response<List<Result>> response) {
 
                 if (!response.isSuccessful()) {
                     // error handling
-
                     return;
                 }
-                // display each monster's info
-                List<Results> resultList = response.body();
-                // loop through entire monster database
-                for (Results result : resultList) {
+                List<Result> resultList = response.body();
+                // loop through results
+                for (Result result : resultList) {
                     results.add(result);
                 }
             }
             @Override
-            public void onFailure(Call<List<Results>> call, Throwable t) {
+            public void onFailure(Call<List<Result>> call, Throwable t) {
 
             }
         });

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BuildEncounterFragment extends Fragment {
     private TextView textViewResult;
-    private ListView monsterList;
+    private ListView monsterListView;
     private EditText monsterSearch;
     private MonstersApi monstersApi;
     private Encounter encounter;
     private MonstersAdapter monsterSearchAdapter;
+    private ArrayList<Monster> monsterList;
+
+    private Retrofit retrofit;
 
     @Override
     public View onCreateView(
@@ -47,9 +51,10 @@ public class BuildEncounterFragment extends Fragment {
 
         // initialize views
         textViewResult = view.findViewById(R.id.textView_result);
-        monsterList = view.findViewById(R.id.listView_monsters);
+        monsterListView = view.findViewById(R.id.listView_monsters);
         monsterSearch = view.findViewById(R.id.editText_monsterSearch);
-        ArrayList<Monster> monsterArray = new ArrayList<>();
+        monsterList = new ArrayList<>();
+        encounter = CreateEncountersFragment.getEncounter();
 
         // back button for returning to create encounters screen
         view.findViewById(R.id.button_backBuildEncounter).setOnClickListener(new View.OnClickListener() {
@@ -63,22 +68,17 @@ public class BuildEncounterFragment extends Fragment {
         encounter = CreateEncountersFragment.getEncounter();
 
         // API integration
-        // create Retrofit object for API use
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
+        retrofit = getRetrofit();
         monstersApi = retrofit.create(MonstersApi.class);
         getMonsters();
 
-        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, encounter.getMonsters());
+        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, monsterList);
         // Assign adapter to ListView
-        monsterList.setAdapter(monsterSearchAdapter);
+        monsterListView.setAdapter(monsterSearchAdapter);
         //enables filtering for the contents of the given ListView
-        monsterList.setTextFilterEnabled(true);
+        monsterListView.setTextFilterEnabled(true);
 
-        monsterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        monsterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
@@ -103,10 +103,10 @@ public class BuildEncounterFragment extends Fragment {
     }
 
     private void getMonsters() {
-        Call<Monsters> monstersCall = monstersApi.getMonsters();
+        Call<Monsters> call = monstersApi.getMonsters();
 
         // populate list of monsters from the API
-        monstersCall.enqueue(new Callback<Monsters>() {
+        call.enqueue(new Callback<Monsters>() {
             @Override
             public void onResponse(Call<Monsters> call, Response<Monsters> response) {
 
@@ -118,12 +118,28 @@ public class BuildEncounterFragment extends Fragment {
                 // display each monster's info
                 Monsters monsters = response.body();
                 // loop through entire monster database
-                for (Results result : monsters.getResults()) {
-                    Monster monster = new Monster();
-                    monster.setIndex(result.getIndex());
-                    monster.setName(result.getName());
-                    monster.setUrl(result.getUrl());
-                    encounter.getMonsters().add(monster);
+                for (Result result : monsters.getResults()) {
+                    final Monster[] monster = new Monster[1];
+                    MonsterApi monsterApi = retrofit.create(MonsterApi.class);
+                    Call<Monster> monsterCall = monsterApi.getMonster(result.getIndex());
+                    monsterCall.enqueue(new Callback<Monster>() {
+                        @Override
+                        public void onResponse(Call<Monster> call, Response<Monster> response) {
+
+                            if (!response.isSuccessful()) {
+                                // error handling
+                                Log.d("ERROR", "Monster Response Unsuccessful");
+                                return;
+                            }
+                            monster[0] = response.body();
+                        }
+                        @Override
+                        public void onFailure(Call<Monster> call, Throwable t) {
+                            // error handling
+                            Log.d("ERROR", "Monster Failure");
+                        }
+                    });
+                    monsterList.add(monster[0]);
                 }
             }
             @Override
@@ -132,5 +148,14 @@ public class BuildEncounterFragment extends Fragment {
                 textViewResult.setText(t.getMessage());
             }
         });
+    }
+
+    private Retrofit getRetrofit() {
+        // create Retrofit object for API use
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit;
     }
 }
