@@ -36,6 +36,7 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
         TextView name;
         TextView cr;
         TextView xp;
+        TextView speed;
     }
 
     @Override
@@ -50,6 +51,7 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
             holder.name = (TextView) convertView.findViewById(R.id.textView_name);
             holder.cr = (TextView) convertView.findViewById(R.id.textView_challenge);
             holder.xp = (TextView) convertView.findViewById(R.id.textView_xp);
+            holder.speed = (TextView) convertView.findViewById(R.id.textView_speed);
 
             convertView.setTag(holder);
         } else {
@@ -63,6 +65,23 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
         holder.cr.setText(cr);
         String xp = "XP: " + monster.getXp();
         holder.xp.setText(xp);
+        String speed = "Speed: ";
+        if (monster.getSpeed().walk != null) {
+            speed += monster.getSpeed().walk;
+        }
+        if (monster.getSpeed().fly != null) {
+            speed += ", ";
+            speed += "fly " + monster.getSpeed().fly;
+        }
+        if (monster.getSpeed().swim != null) {
+            speed += ", ";
+            speed += "swim " + monster.getSpeed().swim;
+        }
+        if (monster.getSpeed().burrow != null) {
+            speed += ", ";
+            speed += "burrow " + monster.getSpeed().burrow;
+        }
+        holder.speed.setText(speed);
         // Return the completed view to render on screen
         return convertView;
     }

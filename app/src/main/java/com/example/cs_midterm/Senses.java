@@ -1,6 +1,6 @@
 package com.example.cs_midterm;
 
-public class Senses  extends Monster {
+public class Senses {
     String blindsight, darkvision, tremorsense, truesight;
     int passive_perception;
 

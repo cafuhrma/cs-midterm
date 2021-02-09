@@ -42,31 +42,32 @@
         android:id="@+id/editText_monsterSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/monster_name"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/listView_monsters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Result"
+        app:layout_constraintBottom_toTopOf="@+id/button_saveEncounter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_monsterSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/listView_monsters" />
 
     <ListView
         android:id="@+id/listView_monsters"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_saveEncounter"
+        app:layout_constraintBottom_toTopOf="@+id/textView_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_monsterSearch" >
+        app:layout_constraintTop_toBottomOf="@+id/editText_monsterSearch">
 
     </ListView>
 

@@ -1,6 +1,6 @@
 package com.example.cs_midterm;
 
-public class Speed extends Monster {
+public class Speed {
     String walk, swim, fly, burrow, climb;
 
     // accessors

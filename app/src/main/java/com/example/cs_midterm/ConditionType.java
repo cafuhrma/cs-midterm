@@ -2,7 +2,7 @@ package com.example.cs_midterm;
 
 import java.util.List;
 
-public class ConditionType extends Monster {
+public class ConditionType {
     String index, name, url;
     List<String> desc;
 

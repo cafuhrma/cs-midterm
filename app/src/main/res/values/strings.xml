@@ -82,6 +82,7 @@
     <string name="_1">1</string>
     <string name="xp">XP</string>
     <string name="textview">TextView</string>
+    <string name="result">Result</string>
 
     <string-array name="partyLevels">
         <item>1</item>

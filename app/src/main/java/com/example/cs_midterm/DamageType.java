@@ -1,6 +1,6 @@
 package com.example.cs_midterm;
 
-public class DamageType extends Damage {
+public class DamageType {
     String name, url;
 
     // accessors

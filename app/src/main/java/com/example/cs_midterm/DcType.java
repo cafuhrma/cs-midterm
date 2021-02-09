@@ -1,6 +1,6 @@
 package com.example.cs_midterm;
 
-public class DcType extends DifficultyClass {
+public class DcType {
     String name, url;
 
     // accessors

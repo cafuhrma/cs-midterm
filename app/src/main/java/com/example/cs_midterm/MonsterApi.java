@@ -5,6 +5,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface MonsterApi {
-    @GET("monsters/{index}")
+    @GET("monsters/{index}/")
     Call<Monster> getMonster(@Path("index") String monsterIndex);
 }

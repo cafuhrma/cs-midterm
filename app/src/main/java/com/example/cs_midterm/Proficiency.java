@@ -1,6 +1,6 @@
 package com.example.cs_midterm;
 
-public class Proficiency extends Proficiencies {
+public class Proficiency {
     String index, name, url;
 
     // accessors
