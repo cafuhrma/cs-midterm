@@ -7,9 +7,11 @@ public class Result {
     public String getIndex() {
         return index;
     }
+
     public String getName() {
         return name;
     }
+
     public String getUrl() {
         return url;
     }

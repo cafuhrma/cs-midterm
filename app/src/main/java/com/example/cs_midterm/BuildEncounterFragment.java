@@ -38,6 +38,7 @@ public class BuildEncounterFragment extends Fragment {
     private MonsterApi monsterApi;
 
     private Retrofit retrofit;
+    private Retrofit monsterRetrofit;
 
     @Override
     public View onCreateView(
@@ -75,19 +76,15 @@ public class BuildEncounterFragment extends Fragment {
                 .baseUrl("https://www.dnd5eapi.co/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        monsterRetrofit = new Retrofit.Builder()
+                .baseUrl("https://www.dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        // TODO
-//        retrofit = getRetrofit();
-//        monstersApi = retrofit.create(MonstersApi.class);
-//        getMonsters();
-
+        // Call the API and populate list of monsters
+        monstersApi = retrofit.create(MonstersApi.class);
         monsterApi = retrofit.create(MonsterApi.class);
-        // API requests for testing
-        getMonster("balor");
-        getMonster("bandit");
-        getMonster("goblin");
-        getMonster("mimic");
-        getMonster("orc");
+        getMonsters();
 
         monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, monsterList);
         // Assign adapter to ListView
@@ -135,30 +132,9 @@ public class BuildEncounterFragment extends Fragment {
                 // display each monster's info
                 Monsters monsters = response.body();
                 // loop through entire monster database
-                for (Result result : monsters.getResults()) {
-                    final Monster[] monster = new Monster[1];
-                    monsterApi = retrofit.create(MonsterApi.class);
-                    Call<Monster> monsterCall = monsterApi.getMonster(result.getIndex());
-                    monsterCall.enqueue(new Callback<Monster>() {
-                        @Override
-                        public void onResponse(Call<Monster> call, Response<Monster> response) {
-
-                            if (!response.isSuccessful()) {
-                                // error handling
-                                textViewResult.setText("Code: " + response.code());
-                                Log.d("ERROR", "Monster Response Unsuccessful");
-                                return;
-                            }
-                            monster[0] = response.body();
-                        }
-                        @Override
-                        public void onFailure(Call<Monster> call, Throwable t) {
-                            // error handling
-                            textViewResult.setText(t.getMessage());
-                            Log.d("ERROR", "Monster Failure");
-                        }
-                    });
-                    monsterList.add(monster[0]);
+                for (int i = 0; i < monsters.getResults().size(); i++) {
+                    Result result = monsters.getResults().get(i);
+                    getMonster(result.getIndex());
                 }
             }
             @Override
@@ -169,7 +145,6 @@ public class BuildEncounterFragment extends Fragment {
         });
     }
 
-    // testing method
     private void getMonster(String monsterIndex) {
         Call<Monster> call = monsterApi.getMonster(monsterIndex);
 
@@ -193,14 +168,5 @@ public class BuildEncounterFragment extends Fragment {
                 Log.d("ERROR", "Monster Failure");
             }
         });
-    }
-
-    private Retrofit getRetrofit() {
-        // create Retrofit object for API use
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        return retrofit;
     }
 }
