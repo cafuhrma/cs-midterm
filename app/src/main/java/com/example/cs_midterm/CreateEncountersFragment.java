@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class CreateEncountersFragment extends Fragment {
-    private static Encounter encounter;
+    Encounter encounter;
     int partyLevel, partySize;
     String difficulty;
 
@@ -132,7 +132,12 @@ public class CreateEncountersFragment extends Fragment {
     }
 
     // accessors
-    public static Encounter getEncounter() {
+    public Encounter getEncounter() {
         return encounter;
+    }
+
+    // mutators
+    public void setEncounter(Encounter _encounter) {
+        encounter = _encounter;
     }
 }

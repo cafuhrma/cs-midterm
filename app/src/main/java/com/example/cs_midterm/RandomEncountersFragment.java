@@ -3,15 +3,14 @@ package com.example.cs_midterm;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class RandomEncountersFragment extends Fragment {
-    Encounter encounter;
+public class RandomEncountersFragment extends CreateEncountersFragment {
+    Encounter randomEncounter;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -34,6 +33,6 @@ public class RandomEncountersFragment extends Fragment {
         });
 
         // initialize encounter
-        encounter = CreateEncountersFragment.getEncounter();
+        randomEncounter = getEncounter();
     }
 }

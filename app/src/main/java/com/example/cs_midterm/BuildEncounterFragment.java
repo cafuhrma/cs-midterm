@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,13 +31,13 @@ public class BuildEncounterFragment extends Fragment {
     private ListView monsterListView;
     private EditText monsterSearch;
     private MonstersApi monstersApi;
-    private Encounter encounter;
+    // create new encounter object and monster list
+    private Encounter newEncounter;
     private MonstersAdapter monsterSearchAdapter;
     private ArrayList<Monster> monsterList;
     private MonsterApi monsterApi;
 
     private Retrofit retrofit;
-    private Retrofit monsterRetrofit;
 
     @Override
     public View onCreateView(
@@ -56,7 +55,8 @@ public class BuildEncounterFragment extends Fragment {
         textViewResult = view.findViewById(R.id.textView_result);
         monsterListView = view.findViewById(R.id.listView_monsters);
         monsterSearch = view.findViewById(R.id.editText_monsterSearch);
-        encounter = CreateEncountersFragment.getEncounter();
+//        newEncounter = getEncounter();
+        monsterList = new ArrayList<>();
 
         // back button for returning to create encounters screen
         view.findViewById(R.id.button_backBuildEncounter).setOnClickListener(new View.OnClickListener() {
@@ -66,17 +66,10 @@ public class BuildEncounterFragment extends Fragment {
                         .navigate(R.id.action_buildEncounterFragment_to_createEncountersFragment);
             }
         });
-        // create new encounter object and monster list
-        encounter = CreateEncountersFragment.getEncounter();
-        monsterList = new ArrayList<>();
 
         // API integration
         // create Retrofit object for API use
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        monsterRetrofit = new Retrofit.Builder()
                 .baseUrl("https://www.dnd5eapi.co/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

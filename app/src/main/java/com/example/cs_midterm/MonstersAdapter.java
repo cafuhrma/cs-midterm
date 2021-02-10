@@ -14,34 +14,33 @@ import java.util.ArrayList;
 public class MonstersAdapter extends ArrayAdapter<Monster> {
     private ArrayList<Monster> originalList;
     private ArrayList<Monster> monsterList;
-    private MonsterFilter filter;
+    private SearchFilter filter;
 
     public MonstersAdapter(Context context, int textViewResourceId, ArrayList<Monster> monsterList) {
         super(context, 0, textViewResourceId, monsterList);
-        this.monsterList = new ArrayList<Monster>();
+        this.monsterList = new ArrayList<>();
         this.monsterList.addAll(monsterList);
-        this.originalList = new ArrayList<Monster>();
+        this.originalList = new ArrayList<>();
         this.originalList.addAll(monsterList);
     }
 
     @Override
     public Filter getFilter() {
         if (filter == null){
-            filter  = new MonsterFilter();
+            filter  = new SearchFilter();
         }
         return filter;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         TextView name;
         TextView cr;
         TextView xp;
-        TextView speed;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         Log.v("ConvertView", String.valueOf(position));
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
@@ -51,7 +50,6 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
             holder.name = (TextView) convertView.findViewById(R.id.textView_name);
             holder.cr = (TextView) convertView.findViewById(R.id.textView_challenge);
             holder.xp = (TextView) convertView.findViewById(R.id.textView_xp);
-            holder.speed = (TextView) convertView.findViewById(R.id.textView_speed);
 
             convertView.setTag(holder);
         } else {
@@ -65,36 +63,19 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
         holder.cr.setText(cr);
         String xp = "XP: " + monster.getXp();
         holder.xp.setText(xp);
-        String speed = "Speed: ";
-        if (monster.getSpeed().walk != null) {
-            speed += monster.getSpeed().walk;
-        }
-        if (monster.getSpeed().fly != null) {
-            speed += ", ";
-            speed += "fly " + monster.getSpeed().fly;
-        }
-        if (monster.getSpeed().swim != null) {
-            speed += ", ";
-            speed += "swim " + monster.getSpeed().swim;
-        }
-        if (monster.getSpeed().burrow != null) {
-            speed += ", ";
-            speed += "burrow " + monster.getSpeed().burrow;
-        }
-        holder.speed.setText(speed);
         // Return the completed view to render on screen
         return convertView;
     }
 
-    // custom filter for the adapter
-    public class MonsterFilter extends Filter {
+    // Filter by name (search bar)
+    public class SearchFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             constraint = constraint.toString().toLowerCase();
             FilterResults result = new FilterResults();
             if(constraint != null && constraint.toString().length() > 0)
             {
-                ArrayList<Monster> filteredItems = new ArrayList<Monster>();
+                ArrayList<Monster> filteredItems = new ArrayList<>();
 
                 for(int i = 0, l = originalList.size(); i < l; i++)
                 {
@@ -129,4 +110,6 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
             notifyDataSetInvalidated();
         }
     }
+
+    // TODO filter by CR/XP
 }
