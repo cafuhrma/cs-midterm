@@ -118,4 +118,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_encounterType"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="72dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:text="@string/encounter_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_partyLevel3" />
+
+    <Spinner
+        android:id="@+id/spinner_encounterType"
+        android:layout_width="200dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_difficulty" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@ import android.widget.Spinner;
 public class CreateEncountersFragment extends Fragment {
     Encounter encounter;
     int partyLevel, partySize;
-    String difficulty;
+    String difficulty, encounterType;
 
     @Override
     public View onCreateView(
@@ -127,8 +127,10 @@ public class CreateEncountersFragment extends Fragment {
             }
         });
 
+        // TODO add encounter type spinner
+
         // initialize the new encounter
-        encounter = new Encounter(partyLevel, partySize, difficulty);
+        encounter = new Encounter(partyLevel, partySize, difficulty, encounterType);
     }
 
     // accessors

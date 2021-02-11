@@ -35,7 +35,6 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
     private static class ViewHolder {
         TextView name;
         TextView cr;
-        TextView xp;
     }
 
     @Override
@@ -49,7 +48,6 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
             holder = new ViewHolder();
             holder.name = (TextView) convertView.findViewById(R.id.textView_name);
             holder.cr = (TextView) convertView.findViewById(R.id.textView_challenge);
-            holder.xp = (TextView) convertView.findViewById(R.id.textView_xp);
 
             convertView.setTag(holder);
         } else {
@@ -61,8 +59,6 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
         holder.name.setText(monster.getName());
         String cr = "CR: " + monster.getChallenge_rating();
         holder.cr.setText(cr);
-        String xp = "XP: " + monster.getXp();
-        holder.xp.setText(xp);
         // Return the completed view to render on screen
         return convertView;
     }

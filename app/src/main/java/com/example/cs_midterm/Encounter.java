@@ -1,25 +1,33 @@
 package com.example.cs_midterm;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Encounter {
     // member fields
-    ArrayList<Monster> monsters;
-    int totalXP, partySize, partyLevel, xpThreshold;
+    ArrayList<Monster> monsters; // monsters in the encounter
+    ArrayList<Monster> monsterList; // list of monsters available to choose from
+    int totalXP, partySize, partyLevel;
+    int easyThreshold, mediumThreshold, hardThreshold, deadlyThreshold;
     String difficulty;
+    String type; // type of encounter
 
     // class constructor
-    public Encounter(int _partySize, int _partyLevel, String _difficulty) {
+    public Encounter(int _partySize, int _partyLevel, String _difficulty, String _type) {
         monsters = new ArrayList<>();
         partySize = _partySize;
         partyLevel = _partyLevel;
         difficulty = _difficulty;
+        type = _type;
         totalXP = 0;
     }
 
     // accessors
     public ArrayList<Monster> getMonsters() {
         return monsters;
+    }
+    public ArrayList<Monster> getMonsterList() {
+        return monsterList;
     }
     public int getTotalXP() {
         return totalXP;
@@ -30,8 +38,20 @@ public class Encounter {
     public int getPartyLevel() {
         return partyLevel;
     }
-    public int getXpThreshold() {
-        return xpThreshold;
+    public int getEasyThreshold() {
+        return easyThreshold;
+    }
+    public int getMediumThreshold() {
+        return mediumThreshold;
+    }
+    public int getHardThreshold() {
+        return hardThreshold;
+    }
+    public int getDeadlyThreshold() {
+        return deadlyThreshold;
+    }
+    public String getType() {
+        return type;
     }
     public String getDifficulty() {
         return difficulty;
@@ -40,6 +60,9 @@ public class Encounter {
     // mutators
     public void setMonsters(ArrayList<Monster> monsters) {
         this.monsters = monsters;
+    }
+    public void setMonsterList(ArrayList<Monster> monsterList) {
+        this.monsterList = monsterList;
     }
     public void setTotalXP(int totalXP) {
         this.totalXP = totalXP;
@@ -50,11 +73,33 @@ public class Encounter {
     public void setPartyLevel(int partyLevel) {
         this.partyLevel = partyLevel;
     }
-    public void setXpThreshold(int xpThreshold) {
-        this.xpThreshold = xpThreshold;
+    public void setEasyThreshold(int easyThreshold) {
+        this.easyThreshold = easyThreshold;
+    }
+    public void setMediumThreshold(int mediumThreshold) {
+        this.mediumThreshold = mediumThreshold;
+    }
+    public void setHardThreshold(int hardThreshold) {
+        this.hardThreshold = hardThreshold;
+    }
+    public void setDeadlyThreshold(int deadlyThreshold) {
+        this.deadlyThreshold = deadlyThreshold;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    // add a new monster to the encounter
+    public void addMonster(Monster _monster) {
+        monsters.add(_monster);
+    }
+
+    // remove a monster from the encounter
+    public void removeMonster(Monster _monster) {
+        monsters.remove(_monster);
     }
 
     // calculate the total amount of xp for the encounter
@@ -126,137 +171,297 @@ public class Encounter {
         int playerXP = totalXP / partySize;
         switch (partyLevel) {
             case 1:
-                if (playerXP <= 25) { difficulty = "Easy"; xpThreshold = 25; }
-                else if (playerXP <= 50) { difficulty = "Medium"; xpThreshold = 50; }
-                else if (playerXP <= 75) { difficulty = "Hard"; xpThreshold = 75; }
-                else if (playerXP <= 100) { difficulty = "Deadly"; xpThreshold = 100; }
+                if (playerXP <= 25) { difficulty = "Easy"; }
+                else if (playerXP <= 50) { difficulty = "Medium"; }
+                else if (playerXP <= 75) { difficulty = "Hard"; }
+                else if (playerXP <= 100) { difficulty = "Deadly"; }
                 break;
             case 2:
-                if (playerXP <= 50) { difficulty = "Easy"; xpThreshold = 50; }
-                else if (playerXP <= 100) { difficulty = "Medium"; xpThreshold = 100; }
-                else if (playerXP <= 150) { difficulty = "Hard"; xpThreshold = 150; }
-                else if (playerXP <= 200) { difficulty = "Deadly"; xpThreshold = 200; }
+                if (playerXP <= 50) { difficulty = "Easy"; }
+                else if (playerXP <= 100) { difficulty = "Medium"; }
+                else if (playerXP <= 150) { difficulty = "Hard"; }
+                else if (playerXP <= 200) { difficulty = "Deadly"; }
                 break;
             case 3:
-                if (playerXP <= 75) { difficulty = "Easy"; xpThreshold = 75; }
-                else if (playerXP <= 150) { difficulty = "Medium"; xpThreshold = 150; }
-                else if (playerXP <= 225) { difficulty = "Hard"; xpThreshold = 225; }
-                else if (playerXP <= 400) { difficulty = "Deadly"; xpThreshold = 400; }
+                if (playerXP <= 75) { difficulty = "Easy"; }
+                else if (playerXP <= 150) { difficulty = "Medium"; }
+                else if (playerXP <= 225) { difficulty = "Hard"; }
+                else if (playerXP <= 400) { difficulty = "Deadly"; }
                 break;
             case 4:
-                if (playerXP <= 125) { difficulty = "Easy"; xpThreshold = 125; }
-                else if (playerXP <= 250) { difficulty = "Medium"; xpThreshold = 250; }
-                else if (playerXP <= 375) { difficulty = "Hard"; xpThreshold = 375; }
-                else if (playerXP <= 500) { difficulty = "Deadly"; xpThreshold = 500; }
+                if (playerXP <= 125) { difficulty = "Easy"; }
+                else if (playerXP <= 250) { difficulty = "Medium"; }
+                else if (playerXP <= 375) { difficulty = "Hard"; }
+                else if (playerXP <= 500) { difficulty = "Deadly"; }
                 break;
             case 5:
-                if (playerXP <= 250) { difficulty = "Easy"; xpThreshold = 250; }
-                else if (playerXP <= 500) { difficulty = "Medium"; xpThreshold = 500; }
-                else if (playerXP <= 750) { difficulty = "Hard"; xpThreshold = 750; }
-                else if (playerXP <= 1100) { difficulty = "Deadly"; xpThreshold = 1100; }
+                if (playerXP <= 250) { difficulty = "Easy"; }
+                else if (playerXP <= 500) { difficulty = "Medium"; }
+                else if (playerXP <= 750) { difficulty = "Hard"; }
+                else if (playerXP <= 1100) { difficulty = "Deadly"; }
                 break;
             case 6:
-                if (playerXP <= 300) { difficulty = "Easy"; xpThreshold = 300; }
-                else if (playerXP <= 600) { difficulty = "Medium"; xpThreshold = 600; }
-                else if (playerXP <= 900) { difficulty = "Hard"; xpThreshold = 900; }
-                else if (playerXP <= 1400) { difficulty = "Deadly"; xpThreshold = 1400; }
+                if (playerXP <= 300) { difficulty = "Easy"; }
+                else if (playerXP <= 600) { difficulty = "Medium"; }
+                else if (playerXP <= 900) { difficulty = "Hard"; }
+                else if (playerXP <= 1400) { difficulty = "Deadly"; }
                 break;
             case 7:
-                if (playerXP <= 350) { difficulty = "Easy"; xpThreshold = 350; }
-                else if (playerXP <= 750) { difficulty = "Medium"; xpThreshold = 750; }
-                else if (playerXP <= 1100) { difficulty = "Hard"; xpThreshold = 1100; }
-                else if (playerXP <= 1700) { difficulty = "Deadly"; xpThreshold = 1700; }
+                if (playerXP <= 350) { difficulty = "Easy"; }
+                else if (playerXP <= 750) { difficulty = "Medium"; }
+                else if (playerXP <= 1100) { difficulty = "Hard"; }
+                else if (playerXP <= 1700) { difficulty = "Deadly"; }
                 break;
             case 8:
-                if (playerXP <= 450) { difficulty = "Easy"; xpThreshold = 450; }
-                else if (playerXP <= 900) { difficulty = "Medium"; xpThreshold = 900; }
-                else if (playerXP <= 1400) { difficulty = "Hard"; xpThreshold = 1400; }
-                else if (playerXP <= 2100) { difficulty = "Deadly"; xpThreshold = 2100; }
+                if (playerXP <= 450) { difficulty = "Easy"; }
+                else if (playerXP <= 900) { difficulty = "Medium"; }
+                else if (playerXP <= 1400) { difficulty = "Hard"; }
+                else if (playerXP <= 2100) { difficulty = "Deadly"; }
                 break;
             case 9:
-                if (playerXP <= 550) { difficulty = "Easy"; xpThreshold = 550; }
-                else if (playerXP <= 1100) { difficulty = "Medium"; xpThreshold = 1100; }
-                else if (playerXP <= 1600) { difficulty = "Hard"; xpThreshold = 1600; }
-                else if (playerXP <= 2400) { difficulty = "Deadly"; xpThreshold = 2400; }
+                if (playerXP <= 550) { difficulty = "Easy"; }
+                else if (playerXP <= 1100) { difficulty = "Medium"; }
+                else if (playerXP <= 1600) { difficulty = "Hard"; }
+                else if (playerXP <= 2400) { difficulty = "Deadly"; }
                 break;
             case 10:
-                if (playerXP <= 600) { difficulty = "Easy"; xpThreshold = 600; }
-                else if (playerXP <= 1200) { difficulty = "Medium"; xpThreshold = 1200; }
-                else if (playerXP <= 1900) { difficulty = "Hard"; xpThreshold = 1900; }
-                else if (playerXP <= 2800) { difficulty = "Deadly"; xpThreshold = 2800; }
+                if (playerXP <= 600) { difficulty = "Easy"; }
+                else if (playerXP <= 1200) { difficulty = "Medium"; }
+                else if (playerXP <= 1900) { difficulty = "Hard"; }
+                else if (playerXP <= 2800) { difficulty = "Deadly"; }
                 break;
             case 11:
-                if (playerXP <= 800) { difficulty = "Easy"; xpThreshold = 800; }
-                else if (playerXP <= 1600) { difficulty = "Medium"; xpThreshold = 1600; }
-                else if (playerXP <= 2400) { difficulty = "Hard"; xpThreshold = 2400; }
-                else if (playerXP <= 3600) { difficulty = "Deadly"; xpThreshold = 3600; }
+                if (playerXP <= 800) { difficulty = "Easy"; }
+                else if (playerXP <= 1600) { difficulty = "Medium"; }
+                else if (playerXP <= 2400) { difficulty = "Hard"; }
+                else if (playerXP <= 3600) { difficulty = "Deadly"; }
                 break;
             case 12:
-                if (playerXP <= 1000) { difficulty = "Easy"; xpThreshold = 1000; }
-                else if (playerXP <= 2000) { difficulty = "Medium"; xpThreshold = 2000; }
-                else if (playerXP <= 3000) { difficulty = "Hard"; xpThreshold = 3000; }
-                else if (playerXP <= 4500) { difficulty = "Deadly"; xpThreshold = 4500; }
+                if (playerXP <= 1000) { difficulty = "Easy"; }
+                else if (playerXP <= 2000) { difficulty = "Medium"; }
+                else if (playerXP <= 3000) { difficulty = "Hard"; }
+                else if (playerXP <= 4500) { difficulty = "Deadly"; }
                 break;
             case 13:
-                if (playerXP <= 1100) { difficulty = "Easy"; xpThreshold = 1100; }
-                else if (playerXP <= 2200) { difficulty = "Medium"; xpThreshold = 2200; }
-                else if (playerXP <= 3400) { difficulty = "Hard"; xpThreshold = 3400; }
-                else if (playerXP <= 5100) { difficulty = "Deadly"; xpThreshold = 5100; }
+                if (playerXP <= 1100) { difficulty = "Easy"; }
+                else if (playerXP <= 2200) { difficulty = "Medium"; }
+                else if (playerXP <= 3400) { difficulty = "Hard"; }
+                else if (playerXP <= 5100) { difficulty = "Deadly"; }
                 break;
             case 14:
-                if (playerXP <= 1250) { difficulty = "Easy"; xpThreshold = 1250; }
-                else if (playerXP <= 2500) { difficulty = "Medium"; xpThreshold = 2500; }
-                else if (playerXP <= 3800) { difficulty = "Hard"; xpThreshold = 3800; }
-                else if (playerXP <= 5700) { difficulty = "Deadly"; xpThreshold = 5700; }
+                if (playerXP <= 1250) { difficulty = "Easy"; }
+                else if (playerXP <= 2500) { difficulty = "Medium"; }
+                else if (playerXP <= 3800) { difficulty = "Hard"; }
+                else if (playerXP <= 5700) { difficulty = "Deadly"; }
                 break;
             case 15:
-                if (playerXP <= 1400) { difficulty = "Easy"; xpThreshold = 1400; }
-                else if (playerXP <= 2800) { difficulty = "Medium"; xpThreshold = 2800; }
-                else if (playerXP <= 4300) { difficulty = "Hard"; xpThreshold = 4300; }
-                else if (playerXP <= 6400) { difficulty = "Deadly"; xpThreshold = 6400; }
+                if (playerXP <= 1400) { difficulty = "Easy"; }
+                else if (playerXP <= 2800) { difficulty = "Medium"; }
+                else if (playerXP <= 4300) { difficulty = "Hard"; }
+                else if (playerXP <= 6400) { difficulty = "Deadly"; }
                 break;
             case 16:
-                if (playerXP <= 1600) { difficulty = "Easy"; xpThreshold = 1600; }
-                else if (playerXP <= 3200) { difficulty = "Medium"; xpThreshold = 3200; }
-                else if (playerXP <= 4800) { difficulty = "Hard"; xpThreshold = 4800; }
-                else if (playerXP <= 7200) { difficulty = "Deadly"; xpThreshold = 7200; }
+                if (playerXP <= 1600) { difficulty = "Easy"; }
+                else if (playerXP <= 3200) { difficulty = "Medium"; }
+                else if (playerXP <= 4800) { difficulty = "Hard"; }
+                else if (playerXP <= 7200) { difficulty = "Deadly"; }
                 break;
             case 17:
-                if (playerXP <= 2000) { difficulty = "Easy"; xpThreshold = 2000; }
-                else if (playerXP <= 3900) { difficulty = "Medium"; xpThreshold = 3900; }
-                else if (playerXP <= 5900) { difficulty = "Hard"; xpThreshold = 5900; }
-                else if (playerXP <= 8800) { difficulty = "Deadly"; xpThreshold = 8800; }
+                if (playerXP <= 2000) { difficulty = "Easy"; }
+                else if (playerXP <= 3900) { difficulty = "Medium"; }
+                else if (playerXP <= 5900) { difficulty = "Hard"; }
+                else if (playerXP <= 8800) { difficulty = "Deadly"; }
                 break;
             case 18:
-                if (playerXP <= 2100) { difficulty = "Easy"; xpThreshold = 2100; }
-                else if (playerXP <= 4200) { difficulty = "Medium"; xpThreshold = 4200; }
-                else if (playerXP <= 6300) { difficulty = "Hard"; xpThreshold = 6300; }
-                else if (playerXP <= 9500) { difficulty = "Deadly"; xpThreshold = 9500; }
+                if (playerXP <= 2100) { difficulty = "Easy"; }
+                else if (playerXP <= 4200) { difficulty = "Medium"; }
+                else if (playerXP <= 6300) { difficulty = "Hard"; }
+                else if (playerXP <= 9500) { difficulty = "Deadly"; }
                 break;
             case 19:
-                if (playerXP <= 2400) { difficulty = "Easy"; xpThreshold = 2400; }
-                else if (playerXP <= 4900) { difficulty = "Medium"; xpThreshold = 4900; }
-                else if (playerXP <= 7300) { difficulty = "Hard"; xpThreshold = 7300; }
-                else if (playerXP <= 10900) { difficulty = "Deadly"; xpThreshold = 10900; }
+                if (playerXP <= 2400) { difficulty = "Easy"; }
+                else if (playerXP <= 4900) { difficulty = "Medium"; }
+                else if (playerXP <= 7300) { difficulty = "Hard"; }
+                else if (playerXP <= 10900) { difficulty = "Deadly"; }
                 break;
             case 20:
-                if (playerXP <= 2800) { difficulty = "Easy"; xpThreshold = 2800; }
-                else if (playerXP <= 5700) { difficulty = "Medium"; xpThreshold = 5700; }
-                else if (playerXP <= 8500) { difficulty = "Hard"; xpThreshold = 8500; }
-                else if (playerXP <= 12700) { difficulty = "Deadly"; xpThreshold = 12700; }
+                if (playerXP <= 2800) { difficulty = "Easy"; }
+                else if (playerXP <= 5700) { difficulty = "Medium"; }
+                else if (playerXP <= 8500) { difficulty = "Hard"; }
+                else if (playerXP <= 12700) { difficulty = "Deadly"; }
+                break;
+        }
+    }
+
+    // determine the xp threshold for each player
+    public void calculateThreshold() {
+        switch (partyLevel) {
+            case 1:
+                if (difficulty.equals("Easy")) { easyThreshold = 25; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 50; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 75; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 100; }
+                break;
+            case 2:
+                if (difficulty.equals("Easy")) { easyThreshold = 50; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 100; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 150; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 200; }
+                break;
+            case 3:
+                if (difficulty.equals("Easy")) { easyThreshold = 75; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 150; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 225; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 400; }
+                break;
+            case 4:
+                if (difficulty.equals("Easy")) { easyThreshold = 125; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 250; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 375; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 500; }
+                break;
+            case 5:
+                if (difficulty.equals("Easy")) { easyThreshold = 250; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 500; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 750; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 1100; }
+                break;
+            case 6:
+                if (difficulty.equals("Easy")) { easyThreshold = 300; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 600; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 900; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 1400; }
+                break;
+            case 7:
+                if (difficulty.equals("Easy")) { easyThreshold = 350; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 750; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 1100; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 1700; }
+                break;
+            case 8:
+                if (difficulty.equals("Easy")) { easyThreshold = 450; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 900; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 1400; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 2100; }
+                break;
+            case 9:
+                if (difficulty.equals("Easy")) { easyThreshold = 550; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 1100; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 1600; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 2400; }
+                break;
+            case 10:
+                if (difficulty.equals("Easy")) { easyThreshold = 600; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 1200; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 1900; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 2800; }
+                break;
+            case 11:
+                if (difficulty.equals("Easy")) { easyThreshold = 800; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 1600; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 2400; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 3600; }
+                break;
+            case 12:
+                if (difficulty.equals("Easy")) { easyThreshold = 1000; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 2000; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 3000; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 4500; }
+                break;
+            case 13:
+                if (difficulty.equals("Easy")) { easyThreshold = 1100; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 2200; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 3400; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 5100; }
+                break;
+            case 14:
+                if (difficulty.equals("Easy")) { easyThreshold = 1250; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 2500; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 3800; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 5700; }
+                break;
+            case 15:
+                if (difficulty.equals("Easy")) { easyThreshold = 1400; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 2800; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 4300; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 6400; }
+                break;
+            case 16:
+                if (difficulty.equals("Easy")) { easyThreshold = 1600; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 3200; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 4800; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 7200; }
+                break;
+            case 17:
+                if (difficulty.equals("Easy")) { easyThreshold = 2000; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 3900; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 5900; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 8800; }
+                break;
+            case 18:
+                if (difficulty.equals("Easy")) { easyThreshold = 2100; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 4200; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 6300; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 9500; }
+                break;
+            case 19:
+                if (difficulty.equals("Easy")) { easyThreshold = 2400; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 4900; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 7300; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 10900; }
+                break;
+            case 20:
+                if (difficulty.equals("Easy")) { easyThreshold = 2800; }
+                else if (difficulty.equals("Medium")) { mediumThreshold = 5700; }
+                else if (difficulty.equals("Hard")) { hardThreshold = 8500; }
+                else if (difficulty.equals("Deadly")) { deadlyThreshold = 12700; }
                 break;
         }
         // calculate the party's xp threshold for the desired difficulty
-        xpThreshold *= partySize;
+        easyThreshold *= partySize;
+        mediumThreshold *= partySize;
+        hardThreshold *= partySize;
+        deadlyThreshold *= partySize;
     }
 
-    // add a new monster to the encounter
-    public void addMonster(Monster _monster) {
-        monsters.add(_monster);
-    }
+    // generate a random encounter
+    public void randomEncounter() {
+        calculateThreshold();
+        int minThreshold, maxThreshold;
+        ArrayList<Monster> filteredList = new ArrayList<>();
+        Random rand = new Random();
 
-    // remove a monster from the encounter
-    public void removeMonster(Monster _monster) {
-        monsters.remove(_monster);
+        if (difficulty.equals("Easy")) {
+            minThreshold = easyThreshold;
+            maxThreshold = mediumThreshold;
+        }
+        else if (difficulty.equals("Medium")) {
+            minThreshold = mediumThreshold;
+            maxThreshold = hardThreshold;
+        }
+        else if (difficulty.equals("Hard")) {
+            minThreshold = hardThreshold;
+            maxThreshold = deadlyThreshold;
+        }
+        else {
+            minThreshold = deadlyThreshold;
+            maxThreshold = deadlyThreshold * 2;
+        }
+
+        // TODO horde encounter generation
+        if (type == "HORDE") {
+        }
+
+        // boss encounter generation
+        else {
+            // loop through monster list for available monsters
+            for (Monster monster : monsterList) {
+                if (monster.getXp() >=  minThreshold && monster.getXp() < maxThreshold) {
+                    filteredList.add(monster);
+                }
+            }
+            // add a randomly selected monster from the filtered list to the encounter
+            monsters.add(filteredList.get(rand.nextInt(filteredList.size())));
+        }
     }
 }

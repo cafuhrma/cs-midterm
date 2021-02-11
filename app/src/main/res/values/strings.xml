@@ -83,6 +83,7 @@
     <string name="xp">XP</string>
     <string name="textview">TextView</string>
     <string name="result">Result</string>
+    <string name="encounter_type">Encounter Type</string>
 
     <string-array name="partyLevels">
         <item>1</item>
