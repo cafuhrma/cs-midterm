@@ -1,25 +1,29 @@
 package com.example.cs_midterm;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Random;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class Encounter {
     // member fields
-    ArrayList<Monster> monsters; // monsters in the encounter
-    ArrayList<Monster> monsterList; // list of monsters available to choose from
-    int totalXP, partySize, partyLevel;
-    int easyThreshold, mediumThreshold, hardThreshold, deadlyThreshold;
-    String difficulty;
-    String type; // type of encounter
+    private ArrayList<Monster> monsters; // monsters used in the encounter
+    private ArrayList<Monster> monsterList; // entire list of monsters to choose from
+    private int totalXP, partySize, partyLevel;
+    private int easyThreshold, mediumThreshold, hardThreshold, deadlyThreshold;
+    private String difficulty;
+    private String type; // type of encounter
 
     // class constructor
-    public Encounter(int _partySize, int _partyLevel, String _difficulty, String _type) {
+    public Encounter() {
         monsters = new ArrayList<>();
-        partySize = _partySize;
-        partyLevel = _partyLevel;
-        difficulty = _difficulty;
-        type = _type;
-        totalXP = 0;
+        monsterList = new ArrayList<>();
     }
 
     // accessors
@@ -428,7 +432,7 @@ public class Encounter {
     public void randomEncounter() {
         calculateThreshold();
         int minThreshold, maxThreshold;
-        ArrayList<Monster> filteredList = new ArrayList<>();
+        ArrayList<Monster> filteredList = new ArrayList<>(); // filtered list of monsters
         Random rand = new Random();
 
         if (difficulty.equals("Easy")) {
@@ -450,9 +454,16 @@ public class Encounter {
 
         // TODO horde encounter generation
         if (type == "HORDE") {
+            int numMonsters = rand.nextInt(20); // determine random number of monsters (0-20)
+            // loop through monster list for available monsters
+            for (Monster monster : monsterList) {
+                if (monster.getXp() < minThreshold) {
+                    filteredList.add(monster);
+                }
+            }
         }
 
-        // boss encounter generation
+        // Boss encounter generation
         else {
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
@@ -462,6 +473,8 @@ public class Encounter {
             }
             // add a randomly selected monster from the filtered list to the encounter
             monsters.add(filteredList.get(rand.nextInt(filteredList.size())));
+            filteredList.clear();
         }
+        calculateXP(); // Update XP for the encounter
     }
 }

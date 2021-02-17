@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MonstersAdapter extends ArrayAdapter<Monster> {
-    private ArrayList<Monster> originalList;
+    private final ArrayList<Monster> originalList;
     private ArrayList<Monster> monsterList;
     private SearchFilter filter;
 

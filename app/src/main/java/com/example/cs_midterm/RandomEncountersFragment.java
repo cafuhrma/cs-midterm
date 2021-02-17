@@ -3,14 +3,24 @@ package com.example.cs_midterm;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-public class RandomEncountersFragment extends CreateEncountersFragment {
-    Encounter randomEncounter;
+import java.util.ArrayList;
+
+public class RandomEncountersFragment extends Fragment {
+    private ArrayList<Encounter> encounters;
+    private EncounterAdapter encounterAdapter;
+    private ListView encounterListView;
+
+    private EncounterViewModel viewModel;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -22,17 +32,27 @@ public class RandomEncountersFragment extends CreateEncountersFragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        encounterListView = view.findViewById(R.id.listView_randomEncounters);
+        encounters = new ArrayList<>();
+
+        viewModel = new ViewModelProvider(this).get(EncounterViewModel.class);
 
         // return to create encounters screen
-        view.findViewById(R.id.button_backRandomList).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(RandomEncountersFragment.this)
-                        .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment);
-            }
-        });
+        view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)
+                .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment));
 
-        // initialize encounter
-        randomEncounter = getEncounter();
+        // initialize and populate list of random encounters
+        for (int i = 0; i < 5; i++) {
+            // TODO retrieve encounter info from previous fragment
+            EncounterViewModel viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
+            viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> {
+                encounter.randomEncounter();
+                encounters.add(encounter);
+                encounter.getMonsters().clear(); // reset the monsters in the encounter
+            });
+        }
+        encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, encounters);
+        // Assign adapter to ListView
+        encounterListView.setAdapter(encounterAdapter);
     }
 }
