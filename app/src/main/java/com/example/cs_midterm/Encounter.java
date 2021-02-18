@@ -1,15 +1,7 @@
 package com.example.cs_midterm;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Random;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Encounter {
     // member fields
@@ -66,7 +58,7 @@ public class Encounter {
         this.monsters = monsters;
     }
     public void setMonsterList(ArrayList<Monster> monsterList) {
-        this.monsterList = monsterList;
+        this.monsterList.addAll(monsterList);
     }
     public void setTotalXP(int totalXP) {
         this.totalXP = totalXP;
@@ -435,31 +427,35 @@ public class Encounter {
         ArrayList<Monster> filteredList = new ArrayList<>(); // filtered list of monsters
         Random rand = new Random();
 
-        if (difficulty.equals("Easy")) {
-            minThreshold = easyThreshold;
-            maxThreshold = mediumThreshold;
-        }
-        else if (difficulty.equals("Medium")) {
-            minThreshold = mediumThreshold;
-            maxThreshold = hardThreshold;
-        }
-        else if (difficulty.equals("Hard")) {
-            minThreshold = hardThreshold;
-            maxThreshold = deadlyThreshold;
-        }
-        else {
-            minThreshold = deadlyThreshold;
-            maxThreshold = deadlyThreshold * 2;
+        switch (difficulty) {
+            case "Easy":
+                minThreshold = easyThreshold;
+                maxThreshold = mediumThreshold;
+                break;
+            case "Medium":
+                minThreshold = mediumThreshold;
+                maxThreshold = hardThreshold;
+                break;
+            case "Hard":
+                minThreshold = hardThreshold;
+                maxThreshold = deadlyThreshold;
+                break;
+            default:
+                minThreshold = deadlyThreshold;
+                maxThreshold = deadlyThreshold * 2;
+                break;
         }
 
         // TODO horde encounter generation
-        if (type == "HORDE") {
+        if (type == "Horde") {
             int numMonsters = rand.nextInt(20); // determine random number of monsters (0-20)
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
                 if (monster.getXp() < minThreshold) {
                     filteredList.add(monster);
                 }
+                // TODO check if xp is within the thresholds of the desired difficulty
+                calculateXP();
             }
         }
 

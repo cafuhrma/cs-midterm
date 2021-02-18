@@ -19,8 +19,6 @@ public class RandomEncountersFragment extends Fragment {
     private EncounterAdapter encounterAdapter;
     private ListView encounterListView;
 
-    private EncounterViewModel viewModel;
-
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -35,24 +33,30 @@ public class RandomEncountersFragment extends Fragment {
         encounterListView = view.findViewById(R.id.listView_randomEncounters);
         encounters = new ArrayList<>();
 
-        viewModel = new ViewModelProvider(this).get(EncounterViewModel.class);
-
         // return to create encounters screen
         view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)
                 .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment));
 
-        // initialize and populate list of random encounters
-        for (int i = 0; i < 5; i++) {
-            // TODO retrieve encounter info from previous fragment
-            EncounterViewModel viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
-            viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> {
-                encounter.randomEncounter();
-                encounters.add(encounter);
-                encounter.getMonsters().clear(); // reset the monsters in the encounter
-            });
-        }
+        // Button to generate new random encounters
+        view.findViewById(R.id.button_generate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // populate list of random encounters
+                for (int i = 0; i < 5; i++) {
+                    EncounterViewModel viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
+                    viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> {
+                        encounter.randomEncounter();
+                        encounters.add(encounter);
+                        encounter.getMonsters().clear(); // reset the monsters in the encounter
+                    });
+                }
+                startActivity(getActivity().getIntent());
+            }
+        });
+
         encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, encounters);
-        // Assign adapter to ListView
+        // Assign adapter to the ListView
         encounterListView.setAdapter(encounterAdapter);
+        startActivity(getActivity().getIntent());
     }
 }

@@ -9,33 +9,35 @@
 
     <Button
         android:id="@+id/button_saveMonster"
-        android:layout_width="360dp"
+        android:layout_width="170dp"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:foregroundTint="#FFFFFF"
         android:text="@string/save_monster"
+        android:textColor="#FFFFFF"
         app:backgroundTint="#FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/button_backCreateMonster"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_backCreateMonster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView_monsterInfo" />
 
     <Button
         android:id="@+id/button_backCreateMonster"
-        android:layout_width="360dp"
+        android:layout_width="170dp"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:foregroundTint="#FFFFFF"
         android:text="@string/back"
+        android:textColor="#FFFFFF"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/button_saveMonster"
+        app:layout_constraintTop_toBottomOf="@+id/listView_monsterInfo" />
 
     <Spinner
         android:id="@+id/spinner_monsterInfo"
@@ -43,6 +45,7 @@
         android:layout_height="wrap_content"
         android:entries="@array/monsterTabs"
         android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/listView_monsterInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +54,7 @@
         android:id="@+id/listView_monsterInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button_saveMonster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

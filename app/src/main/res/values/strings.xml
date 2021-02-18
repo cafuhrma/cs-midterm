@@ -86,6 +86,7 @@
     <string name="encounter_type">Encounter Type</string>
     <string name="amount">amount</string>
     <string name="list_of_monsters">List of Monsters</string>
+    <string name="generate">Generate</string>
 
     <string-array name="partyLevels">
         <item>1</item>
