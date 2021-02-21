@@ -88,16 +88,6 @@ public class Encounter {
         this.difficulty = difficulty;
     }
 
-    // add a new monster to the encounter
-    public void addMonster(Monster _monster) {
-        monsters.add(_monster);
-    }
-
-    // remove a monster from the encounter
-    public void removeMonster(Monster _monster) {
-        monsters.remove(_monster);
-    }
-
     // calculate the total amount of xp for the encounter
     public int calculateXP() {
         double multiplier = 1; // xp multiplier based on # of monsters
@@ -472,5 +462,18 @@ public class Encounter {
             filteredList.clear();
         }
         calculateXP(); // Update XP for the encounter
+    }
+
+    // empty the list of monsters in the encounter
+    public void emptyMonsters() {
+        monsters.clear();
+    }
+    // add a new monster to the encounter
+    public void addMonster(Monster _monster) {
+        monsters.add(_monster);
+    }
+    // remove a monster from the encounter
+    public void removeMonster(Monster _monster) {
+        monsters.remove(_monster);
     }
 }

@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel;
 public class EncounterViewModel extends ViewModel {
     private final MutableLiveData<Encounter> encounter = new MutableLiveData<>();
 
-    public void setEncounter(Encounter _encounter) {
-        encounter.setValue(_encounter);
+    public void setEncounter(Encounter input) {
+        encounter.setValue(input);
     }
 
     public LiveData<Encounter> getEncounter() {

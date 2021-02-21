@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,8 @@ public class CreateEncountersFragment extends Fragment {
     private int partySize = 3; // hardcoded for testing
     private String difficulty = "Hard"; // hardcoded for testing
     private final String encounterType = "Boss"; // hardcoded for testing
+    private Encounter encounter;
+    private EncounterViewModel viewModel;
 
     private MonstersApi monstersApi;
     private MonsterApi monsterApi;
@@ -47,7 +51,14 @@ public class CreateEncountersFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        EncounterViewModel viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
+        encounter = new Encounter();
+        viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
+        viewModel.getEncounter().observe(getViewLifecycleOwner(), new Observer<Encounter>() {
+            @Override
+            public void onChanged(Encounter _encounter) {
+                encounter = _encounter;
+            }
+        });
 
         // API integration
         monsterList = new ArrayList<>();
@@ -61,7 +72,8 @@ public class CreateEncountersFragment extends Fragment {
         monstersApi = retrofit.create(MonstersApi.class);
         monsterApi = retrofit.create(MonsterApi.class);
         getMonsters();
-        viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> encounter.setMonsterList(monsterList));
+
+        encounter.setMonsterList(monsterList);
 
         // party level spinner
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(getActivity(),
