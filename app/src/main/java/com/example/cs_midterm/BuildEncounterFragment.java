@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Editable;
@@ -34,8 +33,8 @@ public class BuildEncounterFragment extends Fragment {
     private ListView monsterListView;
     private EditText monsterSearch;
     private MonstersAdapter monsterSearchAdapter;
-    private ArrayList<Monster> monsterList;
     private Encounter encounter;
+    private ArrayList<Monster> monsterList;
 
     private MonstersApi monstersApi;
     private MonsterApi monsterApi;
@@ -60,11 +59,6 @@ public class BuildEncounterFragment extends Fragment {
         encounter = new Encounter();
         monsterList = new ArrayList<>();
 
-//        EncounterViewModel viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
-//        viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> {
-//            monsterList.addAll(encounter.getMonsterList());
-//        });
-
         // back button for returning to create encounters screen
         view.findViewById(R.id.button_backBuildEncounter).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,10 +82,8 @@ public class BuildEncounterFragment extends Fragment {
         getMonsters();
 
         monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, monsterList);
-        // Assign adapter to ListView
-        monsterListView.setAdapter(monsterSearchAdapter);
-        //enables filtering for the contents of the given ListView
-        monsterListView.setTextFilterEnabled(true);
+        monsterListView.setAdapter(monsterSearchAdapter); // Assign adapter to ListView
+        monsterListView.setTextFilterEnabled(true); //enables filtering for the contents of the given ListView
 
         monsterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -102,7 +94,6 @@ public class BuildEncounterFragment extends Fragment {
                         monster.getName(), Toast.LENGTH_SHORT).show();
             }
         });
-        // Check for search query
         monsterSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -117,7 +108,7 @@ public class BuildEncounterFragment extends Fragment {
                 monsterSearchAdapter.getFilter().filter(s.toString());
                 startActivity(getActivity().getIntent());
             }
-        });
+        }); // Check for search query
         startActivity(getActivity().getIntent());
     }
 

@@ -164,6 +164,7 @@ public class CreateEncountersFragment extends Fragment {
         // switch from create encounters screen to build encounter screen
         view.findViewById(R.id.button_buildEncounter).setOnClickListener(v -> NavHostFragment.findNavController(CreateEncountersFragment.this)
                 .navigate(R.id.action_createEncountersFragment_to_buildEncounterFragment));
+        startActivity(getActivity().getIntent());
     }
 
     private void getMonsters() {

@@ -74,7 +74,7 @@ public class Encounter {
     }
     public void setMediumThreshold(int mediumThreshold) {
         this.mediumThreshold = mediumThreshold;
-    }
+}
     public void setHardThreshold(int hardThreshold) {
         this.hardThreshold = hardThreshold;
     }
@@ -91,6 +91,7 @@ public class Encounter {
     // calculate the total amount of xp for the encounter
     public int calculateXP() {
         double multiplier = 1; // xp multiplier based on # of monsters
+        // Add together each monster's xp value
         for (int i = 0; i < monsters.size(); i++) {
             totalXP += monsters.get(i).getXp();
         }
@@ -283,124 +284,324 @@ public class Encounter {
     public void calculateThreshold() {
         switch (partyLevel) {
             case 1:
-                if (difficulty.equals("Easy")) { easyThreshold = 25; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 50; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 75; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 100; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 25;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 50;
+                        break;
+                    case "Hard":
+                        hardThreshold = 75;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 100;
+                        break;
+                }
                 break;
             case 2:
-                if (difficulty.equals("Easy")) { easyThreshold = 50; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 100; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 150; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 200; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 50;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 100;
+                        break;
+                    case "Hard":
+                        hardThreshold = 150;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 200;
+                        break;
+                }
                 break;
             case 3:
-                if (difficulty.equals("Easy")) { easyThreshold = 75; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 150; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 225; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 400; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 75;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 150;
+                        break;
+                    case "Hard":
+                        hardThreshold = 225;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 400;
+                        break;
+                }
                 break;
             case 4:
-                if (difficulty.equals("Easy")) { easyThreshold = 125; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 250; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 375; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 500; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 125;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 250;
+                        break;
+                    case "Hard":
+                        hardThreshold = 375;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 500;
+                        break;
+                }
                 break;
             case 5:
-                if (difficulty.equals("Easy")) { easyThreshold = 250; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 500; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 750; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 1100; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 250;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 500;
+                        break;
+                    case "Hard":
+                        hardThreshold = 750;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 1100;
+                        break;
+                }
                 break;
             case 6:
-                if (difficulty.equals("Easy")) { easyThreshold = 300; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 600; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 900; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 1400; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 300;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 600;
+                        break;
+                    case "Hard":
+                        hardThreshold = 900;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 1400;
+                        break;
+                }
                 break;
             case 7:
-                if (difficulty.equals("Easy")) { easyThreshold = 350; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 750; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 1100; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 1700; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 350;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 750;
+                        break;
+                    case "Hard":
+                        hardThreshold = 1100;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 1700;
+                        break;
+                }
                 break;
             case 8:
-                if (difficulty.equals("Easy")) { easyThreshold = 450; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 900; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 1400; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 2100; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 450;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 900;
+                        break;
+                    case "Hard":
+                        hardThreshold = 1400;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 2100;
+                        break;
+                }
                 break;
             case 9:
-                if (difficulty.equals("Easy")) { easyThreshold = 550; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 1100; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 1600; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 2400; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 550;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 1100;
+                        break;
+                    case "Hard":
+                        hardThreshold = 1600;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 2400;
+                        break;
+                }
                 break;
             case 10:
-                if (difficulty.equals("Easy")) { easyThreshold = 600; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 1200; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 1900; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 2800; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 600;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 1200;
+                        break;
+                    case "Hard":
+                        hardThreshold = 1900;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 2800;
+                        break;
+                }
                 break;
             case 11:
-                if (difficulty.equals("Easy")) { easyThreshold = 800; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 1600; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 2400; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 3600; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 800;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 1600;
+                        break;
+                    case "Hard":
+                        hardThreshold = 2400;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 3600;
+                        break;
+                }
                 break;
             case 12:
-                if (difficulty.equals("Easy")) { easyThreshold = 1000; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 2000; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 3000; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 4500; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 1000;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 2000;
+                        break;
+                    case "Hard":
+                        hardThreshold = 3000;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 4500;
+                        break;
+                }
                 break;
             case 13:
-                if (difficulty.equals("Easy")) { easyThreshold = 1100; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 2200; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 3400; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 5100; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 1100;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 2200;
+                        break;
+                    case "Hard":
+                        hardThreshold = 3400;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 5100;
+                        break;
+                }
                 break;
             case 14:
-                if (difficulty.equals("Easy")) { easyThreshold = 1250; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 2500; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 3800; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 5700; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 1250;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 2500;
+                        break;
+                    case "Hard":
+                        hardThreshold = 3800;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 5700;
+                        break;
+                }
                 break;
             case 15:
-                if (difficulty.equals("Easy")) { easyThreshold = 1400; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 2800; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 4300; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 6400; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 1400;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 2800;
+                        break;
+                    case "Hard":
+                        hardThreshold = 4300;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 6400;
+                        break;
+                }
                 break;
             case 16:
-                if (difficulty.equals("Easy")) { easyThreshold = 1600; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 3200; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 4800; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 7200; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 1600;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 3200;
+                        break;
+                    case "Hard":
+                        hardThreshold = 4800;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 7200;
+                        break;
+                }
                 break;
             case 17:
-                if (difficulty.equals("Easy")) { easyThreshold = 2000; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 3900; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 5900; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 8800; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 2000;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 3900;
+                        break;
+                    case "Hard":
+                        hardThreshold = 5900;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 8800;
+                        break;
+                }
                 break;
             case 18:
-                if (difficulty.equals("Easy")) { easyThreshold = 2100; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 4200; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 6300; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 9500; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 2100;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 4200;
+                        break;
+                    case "Hard":
+                        hardThreshold = 6300;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 9500;
+                        break;
+                }
                 break;
             case 19:
-                if (difficulty.equals("Easy")) { easyThreshold = 2400; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 4900; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 7300; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 10900; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 2400;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 4900;
+                        break;
+                    case "Hard":
+                        hardThreshold = 7300;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 10900;
+                        break;
+                }
                 break;
             case 20:
-                if (difficulty.equals("Easy")) { easyThreshold = 2800; }
-                else if (difficulty.equals("Medium")) { mediumThreshold = 5700; }
-                else if (difficulty.equals("Hard")) { hardThreshold = 8500; }
-                else if (difficulty.equals("Deadly")) { deadlyThreshold = 12700; }
+                switch (difficulty) {
+                    case "Easy":
+                        easyThreshold = 2800;
+                        break;
+                    case "Medium":
+                        mediumThreshold = 5700;
+                        break;
+                    case "Hard":
+                        hardThreshold = 8500;
+                        break;
+                    case "Deadly":
+                        deadlyThreshold = 12700;
+                        break;
+                }
                 break;
         }
         // calculate the party's xp threshold for the desired difficulty
@@ -437,7 +638,7 @@ public class Encounter {
         }
 
         // TODO horde encounter generation
-        if (type == "Horde") {
+        if (type.equals("Horde")) {
             int numMonsters = rand.nextInt(20); // determine random number of monsters (0-20)
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
@@ -450,7 +651,9 @@ public class Encounter {
         }
 
         // Boss encounter generation
-        else {
+        else if (type.equals("Boss")) {
+            minThreshold = 900; // hardcode for testing
+            maxThreshold = 1600; // hardcode for testing
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
                 if (monster.getXp() >=  minThreshold && monster.getXp() < maxThreshold) {
@@ -458,7 +661,8 @@ public class Encounter {
                 }
             }
             // add a randomly selected monster from the filtered list to the encounter
-            monsters.add(filteredList.get(rand.nextInt(filteredList.size())));
+            int num = rand.nextInt(filteredList.size());
+            monsters.add(filteredList.get(num));
             filteredList.clear();
         }
         calculateXP(); // Update XP for the encounter
