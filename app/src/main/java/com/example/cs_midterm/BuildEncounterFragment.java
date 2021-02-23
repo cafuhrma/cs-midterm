@@ -58,6 +58,7 @@ public class BuildEncounterFragment extends Fragment {
         monsterSearch = view.findViewById(R.id.editText_monsterSearch);
         encounter = new Encounter();
         monsterList = new ArrayList<>();
+        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, monsterList);
 
         // back button for returning to create encounters screen
         view.findViewById(R.id.button_backBuildEncounter).setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,6 @@ public class BuildEncounterFragment extends Fragment {
         });
 
         // API integration
-        monsterList = new ArrayList<>();
         // create Retrofit object for API use
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.dnd5eapi.co/api/")
@@ -81,9 +81,8 @@ public class BuildEncounterFragment extends Fragment {
         monsterApi = retrofit.create(MonsterApi.class);
         getMonsters();
 
-        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, monsterList);
         monsterListView.setAdapter(monsterSearchAdapter); // Assign adapter to ListView
-        monsterListView.setTextFilterEnabled(true); //enables filtering for the contents of the given ListView
+        monsterListView.setTextFilterEnabled(true); // Enables filtering for the contents of the given ListView
 
         monsterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -97,19 +96,17 @@ public class BuildEncounterFragment extends Fragment {
         monsterSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                startActivity(getActivity().getIntent());
+
             }
             @Override
             public void afterTextChanged(Editable s) {
-                startActivity(getActivity().getIntent());
+
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 monsterSearchAdapter.getFilter().filter(s.toString());
-                startActivity(getActivity().getIntent());
             }
         }); // Check for search query
-        startActivity(getActivity().getIntent());
     }
 
     private void getMonsters() {
@@ -157,6 +154,7 @@ public class BuildEncounterFragment extends Fragment {
                 }
                 Monster monster = response.body();
                 monsterList.add(monster);
+                monsterSearchAdapter.notifyDataSetChanged();
             }
             @Override
             public void onFailure(@NotNull Call<Monster> call, @NotNull Throwable t) {

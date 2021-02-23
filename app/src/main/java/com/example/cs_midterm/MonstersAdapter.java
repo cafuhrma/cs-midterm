@@ -76,8 +76,9 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
                 for(int i = 0, l = originalList.size(); i < l; i++)
                 {
                     Monster monster = originalList.get(i);
-                    if(monster.getName().toLowerCase().startsWith(constraint.toString()))
+                    if(monster.getName().toLowerCase().startsWith(constraint.toString())) {
                         filteredItems.add(monster);
+                    }
                 }
                 result.count = filteredItems.size();
                 result.values = filteredItems;

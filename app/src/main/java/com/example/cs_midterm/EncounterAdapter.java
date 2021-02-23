@@ -13,6 +13,7 @@ import java.util.List;
 
 public class EncounterAdapter extends ArrayAdapter<Encounter> {
     private ArrayList<Encounter> encounterList;
+    private MonstersAdapter monstersAdapter;
 
 
     public EncounterAdapter( Context context, int textViewResourceId, List<Encounter> encounterList) {
@@ -40,13 +41,14 @@ public class EncounterAdapter extends ArrayAdapter<Encounter> {
         } else {
             holder = (EncounterAdapter.ViewHolder) convertView.getTag();
         }
-        // Get the data item for this position
-        Encounter encounter = getItem(position);
-        // Populate the data into the template view using the data object
+        Encounter encounter = getItem(position); // Get the data item for this position
+
+        // Put the data into the template view using the data object
         String info = "";
         for (Monster monster : encounter.getMonsters()) {
             info += monster.getName() + "\n";
         }
+
         holder.encounterInfo.setText(info);
         // Return the completed view to render on screen
         return convertView;

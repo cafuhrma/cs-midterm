@@ -29,7 +29,6 @@ public class RandomEncountersFragment extends Fragment {
     private EncounterAdapter encounterAdapter;
     private ListView encounterListView;
 
-    private Encounter encounter;
     private EncounterViewModel viewModel;
 
     private MonstersApi monstersApi;
@@ -48,23 +47,17 @@ public class RandomEncountersFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        encounterListView = view.findViewById(R.id.listView_randomEncounters);
         encounters = new ArrayList<>();
-        encounter = new Encounter();
+        monsterList = new ArrayList<>();
+        encounterListView = view.findViewById(R.id.listView_randomEncounters);
+        encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, encounters);
 
-        // create EncounterViewModel observer
-//        viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
-//        viewModel.getEncounter().observe(getViewLifecycleOwner(), new Observer<Encounter>() {
-//            @Override
-//            public void onChanged(Encounter _encounter) {
-//                encounter = _encounter;
-//            }
-//        });
-//        encounter = viewModel.getEncounter().getValue();
+        // return to create encounters screen
+        view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)
+                .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment));
 
         // TODO remove API
         // API integration
-        monsterList = new ArrayList<>();
         // create Retrofit object for API use
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.dnd5eapi.co/api/")
@@ -75,35 +68,36 @@ public class RandomEncountersFragment extends Fragment {
         monstersApi = retrofit.create(MonstersApi.class);
         monsterApi = retrofit.create(MonsterApi.class);
         getMonsters();
-        encounter.setMonsterList(monsterList);
-        // values for testing
-        encounter.setType("Boss");
-        encounter.setDifficulty("Hard");
-        encounter.setPartySize(4);
-        encounter.setPartyLevel(3);
 
-        // return to create encounters screen
-        view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)
-                .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment));
+        // Create 5 new encounters
+        for (int i = 0; i < 5; i++) {
+            Encounter temp = new Encounter();
+            temp.setMonsterList(monsterList);
+
+            // values for testing
+            temp.setType("Boss");
+            temp.setDifficulty("Hard");
+            temp.setPartySize(4);
+            temp.setPartyLevel(3);
+
+            encounters.add(temp);
+            encounterAdapter.notifyDataSetChanged(); // notify observers
+        }
+
+        // Assign adapter to the ListView
+        encounterListView.setAdapter(encounterAdapter);
 
         // Button to generate new random encounters
         view.findViewById(R.id.button_generate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // populate list of 5 random encounters
-                for (int i = 0; i < 5; i++) {
+                for (Encounter encounter : encounters) {
                     encounter.randomEncounter();
-                    encounters.add(encounter);
-                    encounter.emptyMonsters(); // reset the monsters in the encounter
+                    encounterAdapter.notifyDataSetChanged();
                 }
-                startActivity(getActivity().getIntent());
             }
         });
-
-        encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, encounters);
-        // Assign adapter to the ListView
-        encounterListView.setAdapter(encounterAdapter);
-        encounterAdapter.notifyDataSetChanged();
     }
 
     private void getMonsters() {
@@ -148,6 +142,7 @@ public class RandomEncountersFragment extends Fragment {
                 }
                 Monster monster = response.body();
                 monsterList.add(monster);
+                // TODO notify the observers that the data has been changed
             }
             @Override
             public void onFailure(@NotNull Call<Monster> call, @NotNull Throwable t) {
