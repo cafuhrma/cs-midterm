@@ -13,7 +13,6 @@ import java.util.List;
 
 public class EncounterAdapter extends ArrayAdapter<Encounter> {
     private ArrayList<Encounter> encounterList;
-    private MonstersAdapter monstersAdapter;
 
 
     public EncounterAdapter( Context context, int textViewResourceId, List<Encounter> encounterList) {

@@ -32,13 +32,6 @@ public class CreateEncountersFragment extends Fragment {
     private int partySize = 3; // hardcoded for testing
     private String difficulty = "Hard"; // hardcoded for testing
     private final String encounterType = "Boss"; // hardcoded for testing
-    private Encounter encounter;
-    private EncounterViewModel viewModel;
-
-    private MonstersApi monstersApi;
-    private MonsterApi monsterApi;
-    private ArrayList<Monster> monsterList;
-    private Retrofit retrofit;
 
     @Override
     public View onCreateView(
@@ -51,29 +44,8 @@ public class CreateEncountersFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        encounter = new Encounter();
-        viewModel = new ViewModelProvider(requireActivity()).get(EncounterViewModel.class);
-        viewModel.getEncounter().observe(getViewLifecycleOwner(), new Observer<Encounter>() {
-            @Override
-            public void onChanged(Encounter _encounter) {
-                encounter = _encounter;
-            }
-        });
 
-        // API integration
-        monsterList = new ArrayList<>();
-        // create Retrofit object for API use
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // Call the API and populate list of monsters
-        monstersApi = retrofit.create(MonstersApi.class);
-        monsterApi = retrofit.create(MonsterApi.class);
-        getMonsters();
-
-        encounter.setMonsterList(monsterList);
+        Singleton.getInstance().fillList();
 
         // party level spinner
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(getActivity(),
@@ -93,7 +65,6 @@ public class CreateEncountersFragment extends Fragment {
 
             }
         });
-        viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> encounter.setPartyLevel(partyLevel));
         // party size spinner
         ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.partySize));
@@ -112,7 +83,6 @@ public class CreateEncountersFragment extends Fragment {
 
             }
         });
-        viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> encounter.setPartySize(partySize));
         // difficulty spinner
         ArrayAdapter<String> diffAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.difficulty));
@@ -145,7 +115,6 @@ public class CreateEncountersFragment extends Fragment {
 
             }
         });
-        viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> encounter.setDifficulty(difficulty));
         // encounter type spinner
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.encounterType));
@@ -153,7 +122,6 @@ public class CreateEncountersFragment extends Fragment {
         Spinner typeSpinner = view.findViewById(R.id.spinner_encounterType);
         typeSpinner.setAdapter(typeAdapter);
         // TODO add click listener for encounter type spinner
-        viewModel.getEncounter().observe(getViewLifecycleOwner(), encounter -> encounter.setType(encounterType));
 
         // back button to return to home screen
         view.findViewById(R.id.button_backCreate).setOnClickListener(view1 -> NavHostFragment.findNavController(CreateEncountersFragment.this)
@@ -164,57 +132,5 @@ public class CreateEncountersFragment extends Fragment {
         // switch from create encounters screen to build encounter screen
         view.findViewById(R.id.button_buildEncounter).setOnClickListener(v -> NavHostFragment.findNavController(CreateEncountersFragment.this)
                 .navigate(R.id.action_createEncountersFragment_to_buildEncounterFragment));
-        startActivity(getActivity().getIntent());
-    }
-
-    private void getMonsters() {
-        Call<Monsters> call = monstersApi.getMonsters();
-
-        // populate list of monsters from the API
-        call.enqueue(new Callback<Monsters>() {
-            @Override
-            public void onResponse(@NotNull Call<Monsters> call, @NotNull Response<Monsters> response) {
-
-                if (!response.isSuccessful()) {
-                    // error handling
-                    Log.d("ERROR", "Monsters Response Unsuccessful");
-                    return;
-                }
-                // display each monster's info
-                Monsters monsters = response.body();
-                // loop through entire monster database
-                for (int i = 0; i < monsters.getResults().size(); i++) {
-                    Result result = monsters.getResults().get(i);
-                    getMonster(result.getIndex());
-                }
-            }
-            @Override
-            public void onFailure(@NotNull Call<Monsters> call, @NotNull Throwable t) {
-                // error handling
-                Log.d("ERROR", "Monsters Failure");
-            }
-        });
-    }
-    private void getMonster(String monsterIndex) {
-        Call<Monster> call = monsterApi.getMonster(monsterIndex);
-
-        call.enqueue(new Callback<Monster>() {
-            @Override
-            public void onResponse(@NotNull Call<Monster> call, @NotNull Response<Monster> response) {
-
-                if (!response.isSuccessful()) {
-                    // error handling
-                    Log.d("ERROR", "Monster Response Unsuccessful");
-                    return;
-                }
-                Monster monster = response.body();
-                monsterList.add(monster);
-            }
-            @Override
-            public void onFailure(@NotNull Call<Monster> call, @NotNull Throwable t) {
-                // error handling
-                Log.d("ERROR", "Monster Failure");
-            }
-        });
     }
 }

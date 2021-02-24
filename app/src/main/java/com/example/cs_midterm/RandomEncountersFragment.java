@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -29,13 +27,6 @@ public class RandomEncountersFragment extends Fragment {
     private EncounterAdapter encounterAdapter;
     private ListView encounterListView;
 
-    private EncounterViewModel viewModel;
-
-    private MonstersApi monstersApi;
-    private MonsterApi monsterApi;
-    private ArrayList<Monster> monsterList;
-    private Retrofit retrofit;
-
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -48,7 +39,6 @@ public class RandomEncountersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         encounters = new ArrayList<>();
-        monsterList = new ArrayList<>();
         encounterListView = view.findViewById(R.id.listView_randomEncounters);
         encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, encounters);
 
@@ -56,23 +46,10 @@ public class RandomEncountersFragment extends Fragment {
         view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)
                 .navigate(R.id.action_randomEncountersFragment_to_createEncountersFragment));
 
-        // TODO remove API
-        // API integration
-        // create Retrofit object for API use
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // Call the API and populate list of monsters
-        monstersApi = retrofit.create(MonstersApi.class);
-        monsterApi = retrofit.create(MonsterApi.class);
-        getMonsters();
-
         // Create 5 new encounters
         for (int i = 0; i < 5; i++) {
             Encounter temp = new Encounter();
-            temp.setMonsterList(monsterList);
+            temp.setMonsterList(Singleton.getInstance().monsterList);
 
             // values for testing
             temp.setType("Boss");
@@ -80,6 +57,7 @@ public class RandomEncountersFragment extends Fragment {
             temp.setPartySize(4);
             temp.setPartyLevel(3);
 
+            temp.randomEncounter();
             encounters.add(temp);
             encounterAdapter.notifyDataSetChanged(); // notify observers
         }
@@ -93,61 +71,10 @@ public class RandomEncountersFragment extends Fragment {
             public void onClick(View v) {
                 // populate list of 5 random encounters
                 for (Encounter encounter : encounters) {
+                    encounter.emptyMonsters();
                     encounter.randomEncounter();
                     encounterAdapter.notifyDataSetChanged();
                 }
-            }
-        });
-    }
-
-    private void getMonsters() {
-        Call<Monsters> call = monstersApi.getMonsters();
-
-        // populate list of monsters from the API
-        call.enqueue(new Callback<Monsters>() {
-            @Override
-            public void onResponse(@NotNull Call<Monsters> call, @NotNull Response<Monsters> response) {
-
-                if (!response.isSuccessful()) {
-                    // error handling
-                    Log.d("ERROR", "Monsters Response Unsuccessful");
-                    return;
-                }
-                // display each monster's info
-                Monsters monsters = response.body();
-                // loop through entire monster database
-                for (int i = 0; i < monsters.getResults().size(); i++) {
-                    Result result = monsters.getResults().get(i);
-                    getMonster(result.getIndex());
-                }
-            }
-            @Override
-            public void onFailure(@NotNull Call<Monsters> call, @NotNull Throwable t) {
-                // error handling
-                Log.d("ERROR", "Monsters Failure");
-            }
-        });
-    }
-    private void getMonster(String monsterIndex) {
-        Call<Monster> call = monsterApi.getMonster(monsterIndex);
-
-        call.enqueue(new Callback<Monster>() {
-            @Override
-            public void onResponse(@NotNull Call<Monster> call, @NotNull Response<Monster> response) {
-
-                if (!response.isSuccessful()) {
-                    // error handling
-                    Log.d("ERROR", "Monster Response Unsuccessful");
-                    return;
-                }
-                Monster monster = response.body();
-                monsterList.add(monster);
-                // TODO notify the observers that the data has been changed
-            }
-            @Override
-            public void onFailure(@NotNull Call<Monster> call, @NotNull Throwable t) {
-                // error handling
-                Log.d("ERROR", "Monster Failure");
             }
         });
     }

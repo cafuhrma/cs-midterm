@@ -58,7 +58,7 @@ public class Encounter {
         this.monsters = monsters;
     }
     public void setMonsterList(ArrayList<Monster> monsterList) {
-        this.monsterList.addAll(monsterList);
+        this.monsterList = monsterList;
     }
     public void setTotalXP(int totalXP) {
         this.totalXP = totalXP;
