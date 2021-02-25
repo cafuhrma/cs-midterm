@@ -22,7 +22,10 @@ public class Singleton {
     public ArrayList<Monster> monsterList;
     public Encounter encounter;
 
-    private Singleton(){}
+    private Singleton() {
+        monsterList = new ArrayList<>();
+        encounter = new Encounter();
+    }
 
     public static synchronized Singleton getInstance() {
         if(instance == null) {
@@ -32,7 +35,6 @@ public class Singleton {
     }
 
     public void fillList() {
-        monsterList = new ArrayList<>();
         // create Retrofit object for API use
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.dnd5eapi.co/api/")
