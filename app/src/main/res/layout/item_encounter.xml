@@ -5,9 +5,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView_encounterInfo"
+        android:id="@+id/textView_encounterIndex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/list_of_monsters" />
+        android:text="@string/encounter" />
 
+    <ListView
+        android:id="@+id/listView_encounterInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

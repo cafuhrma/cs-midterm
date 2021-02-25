@@ -34,6 +34,8 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
 
     private static class ViewHolder {
         TextView name;
+        TextView type;
+        TextView size;
         TextView cr;
     }
 
@@ -47,6 +49,8 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
 
             holder = new ViewHolder();
             holder.name = (TextView) convertView.findViewById(R.id.textView_name);
+            holder.type = (TextView) convertView.findViewById(R.id.textView_monsterType);
+            holder.size = (TextView) convertView.findViewById(R.id.textView_monsterSize);
             holder.cr = (TextView) convertView.findViewById(R.id.textView_challenge);
 
             convertView.setTag(holder);
@@ -57,6 +61,8 @@ public class MonstersAdapter extends ArrayAdapter<Monster> {
         Monster monster = getItem(position);
         // Populate the data into the template view using the data object
         holder.name.setText(monster.getName());
+        holder.type.setText("Type: " + monster.getType());
+        holder.size.setText("Size: " + monster.getSize());
         String cr = "CR: " + monster.getChallenge_rating();
         holder.cr.setText(cr);
         // Return the completed view to render on screen

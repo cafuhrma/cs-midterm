@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class EncounterAdapter extends ArrayAdapter<Encounter> {
     }
 
     private static class ViewHolder {
-        TextView encounterInfo;
+        TextView index;
+        ListView encounterInfo;
     }
 
     @Override
@@ -34,22 +36,17 @@ public class EncounterAdapter extends ArrayAdapter<Encounter> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_encounter, parent, false);
 
             holder = new EncounterAdapter.ViewHolder();
-            holder.encounterInfo = (TextView) convertView.findViewById(R.id.textView_encounterInfo);
+            holder.index = (TextView) convertView.findViewById(R.id.textView_encounterIndex);
+            holder.encounterInfo = (ListView) convertView.findViewById(R.id.listView_encounterInfo);
 
             convertView.setTag(holder);
         } else {
             holder = (EncounterAdapter.ViewHolder) convertView.getTag();
         }
         Encounter encounter = getItem(position); // Get the data item for this position
-
-        // Put the data into the template view using the data object
-        String info = "";
-        for (Monster monster : encounter.getMonsters()) {
-            info += monster.getName() + "\n";
-        }
-
-        holder.encounterInfo.setText(info);
-        // Return the completed view to render on screen
-        return convertView;
+        MonstersAdapter monstersAdapter = new MonstersAdapter(getContext(), R.layout.item_monster, encounter.getMonsters());
+        holder.encounterInfo.setAdapter(monstersAdapter);
+        holder.index.setText("Encounter #" + (position+1));
+        return convertView; // Return the completed view to render on screen
     }
 }
