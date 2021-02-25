@@ -49,13 +49,11 @@ public class RandomEncountersFragment extends Fragment {
         // Create 5 new encounters
         for (int i = 0; i < 5; i++) {
             Encounter temp = new Encounter();
+            temp.setPartyLevel(Singleton.getInstance().encounter.getPartyLevel());
+            temp.setPartySize(Singleton.getInstance().encounter.getPartySize());
+            temp.setDifficulty(Singleton.getInstance().encounter.getDifficulty());
+            temp.setType(Singleton.getInstance().encounter.getType());
             temp.setMonsterList(Singleton.getInstance().monsterList);
-
-            // values for testing
-            temp.setType("Boss");
-            temp.setDifficulty("Hard");
-            temp.setPartySize(4);
-            temp.setPartyLevel(3);
 
             temp.randomEncounter();
             encounters.add(temp);

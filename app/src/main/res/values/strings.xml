@@ -111,6 +111,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>Random</item>
     </string-array>
     <string-array name="partySize">
         <item>1</item>
@@ -123,8 +124,10 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+        <item>Random</item>
     </string-array>
     <string-array name="difficulty">
+        <item>Any</item>
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
@@ -140,8 +143,8 @@
         <item>ACTIONS</item>
     </string-array>
     <string-array name="encounterType">
+        <item>Any</item>
         <item>Boss</item>
         <item>Horde</item>
-        <item>Both</item>
     </string-array>
 </resources>

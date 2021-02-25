@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,10 +29,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreateEncountersFragment extends Fragment {
-    private int partyLevel = 2; // hardcoded for testing
-    private int partySize = 3; // hardcoded for testing
-    private String difficulty = "Hard"; // hardcoded for testing
-    private final String encounterType = "Boss"; // hardcoded for testing
 
     @Override
     public View onCreateView(
@@ -46,6 +43,11 @@ public class CreateEncountersFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Singleton.getInstance().fillList();
+        // Default encounter values
+        Singleton.getInstance().encounter.setPartyLevel(3);
+        Singleton.getInstance().encounter.setPartySize(4);
+        Singleton.getInstance().encounter.setDifficulty("Hard");
+        Singleton.getInstance().encounter.setType("Boss");
 
         // party level spinner
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(getActivity(),
@@ -56,8 +58,72 @@ public class CreateEncountersFragment extends Fragment {
         levelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position >= 0 && position < getResources().getStringArray(R.array.partyLevels).length) {
-                    partyLevel = position;
+                switch (position) {
+                    case 0:
+                        Singleton.getInstance().encounter.setPartyLevel(1);
+                        break;
+                    case 1:
+                        Singleton.getInstance().encounter.setPartyLevel(2);
+                        break;
+                    case 2:
+                        Singleton.getInstance().encounter.setPartyLevel(3);
+                        break;
+                    case 3:
+                        Singleton.getInstance().encounter.setPartyLevel(4);
+                        break;
+                    case 4:
+                        Singleton.getInstance().encounter.setPartyLevel(5);
+                        break;
+                    case 5:
+                        Singleton.getInstance().encounter.setPartyLevel(6);
+                        break;
+                    case 6:
+                        Singleton.getInstance().encounter.setPartyLevel(7);
+                        break;
+                    case 7:
+                        Singleton.getInstance().encounter.setPartyLevel(8);
+                        break;
+                    case 8:
+                        Singleton.getInstance().encounter.setPartyLevel(9);
+                        break;
+                    case 9:
+                        Singleton.getInstance().encounter.setPartyLevel(10);
+                        break;
+                    case 10:
+                        Singleton.getInstance().encounter.setPartyLevel(11);
+                        break;
+                    case 11:
+                        Singleton.getInstance().encounter.setPartyLevel(12);
+                        break;
+                    case 12:
+                        Singleton.getInstance().encounter.setPartyLevel(13);
+                        break;
+                    case 13:
+                        Singleton.getInstance().encounter.setPartyLevel(14);
+                        break;
+                    case 14:
+                        Singleton.getInstance().encounter.setPartyLevel(15);
+                        break;
+                    case 15:
+                        Singleton.getInstance().encounter.setPartyLevel(16);
+                        break;
+                    case 16:
+                        Singleton.getInstance().encounter.setPartyLevel(17);
+                        break;
+                    case 17:
+                        Singleton.getInstance().encounter.setPartyLevel(18);
+                        break;
+                    case 18:
+                        Singleton.getInstance().encounter.setPartyLevel(19);
+                        break;
+                    case 19:
+                        Singleton.getInstance().encounter.setPartyLevel(20);
+                        break;
+                    case 20:
+                        Random rand = new Random();
+                        int num = rand.nextInt(20) + 1;
+                        Singleton.getInstance().encounter.setPartyLevel(num);
+                        break;
                 }
             }
             @Override
@@ -74,8 +140,42 @@ public class CreateEncountersFragment extends Fragment {
         sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position >= 0 && position < getResources().getStringArray(R.array.partySize).length) {
-                    partySize = position;
+                switch (position) {
+                    case 0:
+                        Singleton.getInstance().encounter.setPartySize(1);
+                        break;
+                    case 1:
+                        Singleton.getInstance().encounter.setPartySize(2);
+                        break;
+                    case 2:
+                        Singleton.getInstance().encounter.setPartySize(3);
+                        break;
+                    case 3:
+                        Singleton.getInstance().encounter.setPartySize(4);
+                        break;
+                    case 4:
+                        Singleton.getInstance().encounter.setPartySize(5);
+                        break;
+                    case 5:
+                        Singleton.getInstance().encounter.setPartySize(6);
+                        break;
+                    case 6:
+                        Singleton.getInstance().encounter.setPartySize(7);
+                        break;
+                    case 7:
+                        Singleton.getInstance().encounter.setPartySize(8);
+                        break;
+                    case 8:
+                        Singleton.getInstance().encounter.setPartySize(9);
+                        break;
+                    case 9:
+                        Singleton.getInstance().encounter.setPartySize(10);
+                        break;
+                    case 10:
+                        Random rand = new Random();
+                        int num = rand.nextInt(10) + 1;
+                        Singleton.getInstance().encounter.setPartySize(num);
+                        break;
                 }
             }
             @Override
@@ -92,22 +192,37 @@ public class CreateEncountersFragment extends Fragment {
         diffSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position >= 0 && position < getResources().getStringArray(R.array.difficulty).length) {
-                    if (position == 1) {
-                        difficulty = "EASY";
-                    }
-                    else if (position == 2) {
-                        difficulty = "MEDIUM";
-                    }
-                    else if (position == 3) {
-                        difficulty = "HARD";
-                    }
-                    else if (position == 4) {
-                        difficulty = "DEADLY";
-                    }
-                    else {
-                        difficulty = "MEDIUM";
-                    }
+                switch (position) {
+                    case 0:
+                        Random rand = new Random();
+                        int num = rand.nextInt(4);
+                        switch (num) {
+                            case 0:
+                                Singleton.getInstance().encounter.setDifficulty("Easy");
+                                break;
+                            case 1:
+                                Singleton.getInstance().encounter.setDifficulty("Medium");
+                                break;
+                            case 2:
+                                Singleton.getInstance().encounter.setDifficulty("Hard");
+                                break;
+                            case 3:
+                                Singleton.getInstance().encounter.setDifficulty("Deadly");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        Singleton.getInstance().encounter.setDifficulty("Easy");
+                        break;
+                    case 2:
+                        Singleton.getInstance().encounter.setDifficulty("Medium");
+                        break;
+                    case 3:
+                        Singleton.getInstance().encounter.setDifficulty("Hard");
+                        break;
+                    case 4:
+                        Singleton.getInstance().encounter.setDifficulty("Deadly");
+                        break;
                 }
             }
             @Override
@@ -121,8 +236,33 @@ public class CreateEncountersFragment extends Fragment {
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner typeSpinner = view.findViewById(R.id.spinner_encounterType);
         typeSpinner.setAdapter(typeAdapter);
-        // TODO add click listener for encounter type spinner
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        Random rand = new Random();
+                        int num = rand.nextInt(2);
+                        if (num == 0) {
+                            Singleton.getInstance().encounter.setType("Boss");
+                        }
+                        else {
+                            Singleton.getInstance().encounter.setType("Horde");
+                        }
+                        break;
+                    case 1:
+                        Singleton.getInstance().encounter.setType("Boss");
+                        break;
+                    case 2:
+                        Singleton.getInstance().encounter.setType("Horde");
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
         // back button to return to home screen
         view.findViewById(R.id.button_backCreate).setOnClickListener(view1 -> NavHostFragment.findNavController(CreateEncountersFragment.this)
                 .navigate(R.id.action_createEncountersFragment_to_HomeFragment));

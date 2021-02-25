@@ -284,324 +284,124 @@ public class Encounter {
     public void calculateThreshold() {
         switch (partyLevel) {
             case 1:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 25;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 50;
-                        break;
-                    case "Hard":
-                        hardThreshold = 75;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 100;
-                        break;
-                }
+                easyThreshold = 25;
+                mediumThreshold = 50;
+                hardThreshold = 75;
+                deadlyThreshold = 100;
                 break;
             case 2:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 50;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 100;
-                        break;
-                    case "Hard":
-                        hardThreshold = 150;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 200;
-                        break;
-                }
+                easyThreshold = 50;
+                mediumThreshold = 100;
+                hardThreshold = 150;
+                deadlyThreshold = 200;
                 break;
             case 3:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 75;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 150;
-                        break;
-                    case "Hard":
-                        hardThreshold = 225;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 400;
-                        break;
-                }
+                easyThreshold = 75;
+                mediumThreshold = 150;
+                hardThreshold = 225;
+                deadlyThreshold = 400;
                 break;
             case 4:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 125;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 250;
-                        break;
-                    case "Hard":
-                        hardThreshold = 375;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 500;
-                        break;
-                }
+                easyThreshold = 125;
+                mediumThreshold = 250;
+                hardThreshold = 375;
+                deadlyThreshold = 500;
                 break;
             case 5:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 250;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 500;
-                        break;
-                    case "Hard":
-                        hardThreshold = 750;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 1100;
-                        break;
-                }
+                easyThreshold = 250;
+                mediumThreshold = 500;
+                hardThreshold = 750;
+                deadlyThreshold = 1100;
                 break;
             case 6:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 300;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 600;
-                        break;
-                    case "Hard":
-                        hardThreshold = 900;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 1400;
-                        break;
-                }
+                easyThreshold = 300;
+                mediumThreshold = 600;
+                hardThreshold = 900;
+                deadlyThreshold = 1400;
                 break;
             case 7:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 350;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 750;
-                        break;
-                    case "Hard":
-                        hardThreshold = 1100;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 1700;
-                        break;
-                }
+                easyThreshold = 350;
+                mediumThreshold = 750;
+                hardThreshold = 1100;
+                deadlyThreshold = 1700;
                 break;
             case 8:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 450;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 900;
-                        break;
-                    case "Hard":
-                        hardThreshold = 1400;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 2100;
-                        break;
-                }
+                easyThreshold = 450;
+                mediumThreshold = 900;
+                hardThreshold = 1400;
+                deadlyThreshold = 2100;
                 break;
             case 9:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 550;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 1100;
-                        break;
-                    case "Hard":
-                        hardThreshold = 1600;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 2400;
-                        break;
-                }
+                easyThreshold = 550;
+                mediumThreshold = 1100;
+                hardThreshold = 1600;
+                deadlyThreshold = 2400;
                 break;
             case 10:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 600;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 1200;
-                        break;
-                    case "Hard":
-                        hardThreshold = 1900;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 2800;
-                        break;
-                }
+                easyThreshold = 600;
+                mediumThreshold = 1200;
+                hardThreshold = 1900;
+                deadlyThreshold = 2800;
                 break;
             case 11:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 800;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 1600;
-                        break;
-                    case "Hard":
-                        hardThreshold = 2400;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 3600;
-                        break;
-                }
+                easyThreshold = 800;
+                mediumThreshold = 1600;
+                hardThreshold = 2400;
+                deadlyThreshold = 3600;
                 break;
             case 12:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 1000;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 2000;
-                        break;
-                    case "Hard":
-                        hardThreshold = 3000;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 4500;
-                        break;
-                }
+                easyThreshold = 1000;
+                mediumThreshold = 2000;
+                hardThreshold = 3000;
+                deadlyThreshold = 4500;
                 break;
             case 13:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 1100;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 2200;
-                        break;
-                    case "Hard":
-                        hardThreshold = 3400;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 5100;
-                        break;
-                }
+                easyThreshold = 1100;
+                mediumThreshold = 2200;
+                hardThreshold = 3400;
+                deadlyThreshold = 5100;
                 break;
             case 14:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 1250;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 2500;
-                        break;
-                    case "Hard":
-                        hardThreshold = 3800;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 5700;
-                        break;
-                }
+                easyThreshold = 1250;
+                mediumThreshold = 2500;
+                hardThreshold = 3800;
+                deadlyThreshold = 5700;
                 break;
             case 15:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 1400;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 2800;
-                        break;
-                    case "Hard":
-                        hardThreshold = 4300;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 6400;
-                        break;
-                }
+                easyThreshold = 1400;
+                mediumThreshold = 2800;
+                hardThreshold = 4300;
+                deadlyThreshold = 6400;
                 break;
             case 16:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 1600;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 3200;
-                        break;
-                    case "Hard":
-                        hardThreshold = 4800;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 7200;
-                        break;
-                }
+                easyThreshold = 1600;
+                mediumThreshold = 3200;
+                hardThreshold = 4800;
+                deadlyThreshold = 7200;
                 break;
             case 17:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 2000;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 3900;
-                        break;
-                    case "Hard":
-                        hardThreshold = 5900;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 8800;
-                        break;
-                }
+                easyThreshold = 2000;
+                mediumThreshold = 3900;
+                hardThreshold = 5900;
+                deadlyThreshold = 8800;
                 break;
             case 18:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 2100;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 4200;
-                        break;
-                    case "Hard":
-                        hardThreshold = 6300;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 9500;
-                        break;
-                }
+                easyThreshold = 2100;
+                mediumThreshold = 4200;
+                hardThreshold = 6300;
+                deadlyThreshold = 9500;
                 break;
             case 19:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 2400;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 4900;
-                        break;
-                    case "Hard":
-                        hardThreshold = 7300;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 10900;
-                        break;
-                }
+                easyThreshold = 2400;
+                mediumThreshold = 4900;
+                hardThreshold = 7300;
+                deadlyThreshold = 10900;
                 break;
             case 20:
-                switch (difficulty) {
-                    case "Easy":
-                        easyThreshold = 2800;
-                        break;
-                    case "Medium":
-                        mediumThreshold = 5700;
-                        break;
-                    case "Hard":
-                        hardThreshold = 8500;
-                        break;
-                    case "Deadly":
-                        deadlyThreshold = 12700;
-                        break;
-                }
+                easyThreshold = 2800;
+                mediumThreshold = 5700;
+                hardThreshold = 8500;
+                deadlyThreshold = 12700;
                 break;
         }
         // calculate the party's xp threshold for the desired difficulty
@@ -639,21 +439,28 @@ public class Encounter {
 
         // TODO horde encounter generation
         if (type.equals("Horde")) {
-            int numMonsters = rand.nextInt(20); // determine random number of monsters (0-20)
+            int numMonsters = getRandomNumber(5, 20); // determine random number of monsters (5-20)
+            int typesOfMonsters = rand.nextInt(3) + 1;
+            int minMonsterXP = minThreshold / numMonsters;
+            int maxMonsterXP = maxThreshold / numMonsters;
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
-                if (monster.getXp() < minThreshold) {
+                if (monster.getXp() >= minMonsterXP && monster.getXp() <= maxMonsterXP) {
                     filteredList.add(monster);
                 }
-                // TODO check if xp is within the thresholds of the desired difficulty
-                calculateXP();
             }
+            // populate the encounter
+            for (int i = 0; i < numMonsters; i++) {
+                int num = rand.nextInt(filteredList.size());
+                monsters.add(filteredList.get(num));
+            }
+            // TODO check if xp is within the thresholds of the desired difficulty
+            calculateXP();
+            filteredList.clear();
         }
 
         // Boss encounter generation
         else if (type.equals("Boss")) {
-            minThreshold = 900; // hardcode for testing
-            maxThreshold = 1600; // hardcode for testing
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
                 if (monster.getXp() >=  minThreshold && monster.getXp() < maxThreshold) {
@@ -679,5 +486,9 @@ public class Encounter {
     // remove a monster from the encounter
     public void removeMonster(Monster _monster) {
         monsters.remove(_monster);
+    }
+    // generate a random number in a given range
+    public int getRandomNumber(int min, int max) {
+        return (int)((Math.random() * (max - min)) + min);
     }
 }
