@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,8 +13,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.List;
 
 public class ViewEncountersFragment extends Fragment {
-
-    List<Encounter> myEncounters;
+    ListView encountersList;
+    EncounterAdapter encounterAdapter;
 
     @Override
     public View onCreateView(
@@ -27,6 +28,11 @@ public class ViewEncountersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        encountersList = view.findViewById(R.id.listView_encounters);
+        encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, Singleton.getInstance().myEncounters);
+        encountersList.setAdapter(encounterAdapter);
+
+        // back button to return to home screen
         view.findViewById(R.id.button_backEncounters).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

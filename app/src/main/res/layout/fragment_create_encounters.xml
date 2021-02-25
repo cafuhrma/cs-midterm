@@ -10,6 +10,7 @@
 
     <Spinner
         android:id="@+id/spinner_difficulty"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
         android:layout_width="200dp"
         android:layout_height="31dp"
         android:layout_marginTop="50dp"
@@ -20,6 +21,7 @@
 
     <Spinner
         android:id="@+id/spinner_partySize"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
         android:layout_width="200dp"
         android:layout_height="31dp"
         android:layout_marginTop="50dp"
@@ -115,6 +117,7 @@
 
     <Spinner
         android:id="@+id/spinner_partyLevel"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
         android:layout_width="200dp"
         android:layout_height="31dp"
         android:layout_marginTop="50dp"
@@ -138,6 +141,7 @@
 
     <Spinner
         android:id="@+id/spinner_encounterType"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
         android:layout_width="200dp"
         android:layout_height="31dp"
         android:layout_marginStart="36dp"

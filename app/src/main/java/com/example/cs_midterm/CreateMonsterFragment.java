@@ -95,10 +95,11 @@ public class CreateMonsterFragment extends Fragment {
     private void getSelectedCategoryData(int categoryID) {
         //arraylist to hold selected cosmic bodies
         ArrayList<ListViewItem> categories = new ArrayList<>();
-        if(categoryID == 0)
+        if (categoryID == 0)
         {
             infoAdapter = new MonsterInfoAdapter(getActivity(), R.id.tableLayout, getInfoList());
-        }else {
+        }
+        else {
             //filter by id
             for (ListViewItem item : getInfoList()) {
                 if (item.getType() == categoryID) {

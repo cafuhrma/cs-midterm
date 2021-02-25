@@ -2,16 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView_encounterIndex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/encounter" />
+        android:layout_weight="1"
+        android:text="@string/encounter"
+        android:textColor="#000000" />
 
     <ListView
         android:id="@+id/listView_encounterInfo"
+        style="@android:style/Widget.DeviceDefault.ExpandableListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:dividerHeight="8dp" />
 </LinearLayout>

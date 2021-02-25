@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.jetbrains.annotations.NotNull;
@@ -56,12 +57,35 @@ public class RandomEncountersFragment extends Fragment {
             temp.setMonsterList(Singleton.getInstance().monsterList);
 
             temp.randomEncounter();
-            encounters.add(temp);
-            encounterAdapter.notifyDataSetChanged(); // notify observers
+            Boolean isNew = true;
+            // Check for duplicate encounter
+            for (Encounter encounter : encounters) {
+                for (Monster monster : encounter.getMonsters()) {
+                    for (Monster tempMonster : temp.getMonsters()) {
+                        if (tempMonster == monster) {
+                            isNew = false;
+                            break;
+                        }
+                    }
+                    if (isNew == false) { break; }
+                }
+                if (isNew == false) { break; }
+            }
+            if (isNew == true) {
+                encounters.add(temp);
+                encounterAdapter.notifyDataSetChanged(); // notify observers
+            }
+            else { i--; }
         }
 
         // Assign adapter to the ListView
         encounterListView.setAdapter(encounterAdapter);
+        encounterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Singleton.getInstance().myEncounters.add(encounters.get(position));
+            }
+        });
 
         // Button to generate new random encounters
         view.findViewById(R.id.button_generate).setOnClickListener(new View.OnClickListener() {
