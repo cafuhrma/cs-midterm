@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -48,12 +49,6 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
         viewHolder.lvEncounter.setAdapter(monstersAdapter);
         viewHolder.tvHeading.setText("Encounter " + (position+1));
 
-//        Picasso.with(context)
-//                .load(repos.get(position).getOwner().getImageUrl())
-//                .resize(500, 500)
-//                .centerCrop()
-//                .into(viewHolder.ivOwner);
-
         //check if view is expanded
         final boolean isExpanded = expandState.get(position);
         viewHolder.expandableLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
@@ -62,7 +57,14 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
         viewHolder.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                onClickButton(viewHolder.expandableLayout, viewHolder.buttonLayout,  position);
+                onClickExpand(viewHolder.expandableLayout, viewHolder.buttonLayout,  position);
+            }
+        });
+
+        viewHolder.saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Singleton.getInstance().myEncounters.add(encounter);
             }
         });
     }
@@ -76,6 +78,7 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
 
         private TextView tvHeading;
         private ListView lvEncounter;
+        private Button saveButton;
         public RelativeLayout buttonLayout;
         public LinearLayout expandableLayout;
 
@@ -84,13 +87,13 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
 
             tvHeading = (TextView)view.findViewById(R.id.tv_heading);
             lvEncounter = (ListView)view.findViewById(R.id.expandable_listView);
-
+            saveButton = (Button) view.findViewById(R.id.button_saveRandomEncounter);
             buttonLayout = (RelativeLayout) view.findViewById(R.id.button);
             expandableLayout = (LinearLayout) view.findViewById(R.id.expandableLayout);
         }
     }
 
-    private void onClickButton(final LinearLayout expandableLayout, final RelativeLayout buttonLayout, final  int position) {
+    private void onClickExpand(final LinearLayout expandableLayout, final RelativeLayout buttonLayout, final  int position) {
 
         //Simply set View to Gone if not expanded
         //Not necessary but I put simple rotation on button layout

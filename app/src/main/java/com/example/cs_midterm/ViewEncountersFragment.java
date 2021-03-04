@@ -9,12 +9,14 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class ViewEncountersFragment extends Fragment {
-    ListView encountersList;
-    EncounterAdapter encounterAdapter;
+    private RecyclerView recyclerView;
+    private ExpandableRecyclerAdapter recyclerAdapter;
 
     @Override
     public View onCreateView(
@@ -28,9 +30,13 @@ public class ViewEncountersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        encountersList = view.findViewById(R.id.listView_encounters);
-        encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, Singleton.getInstance().myEncounters);
-        encountersList.setAdapter(encounterAdapter);
+        recyclerView = view.findViewById(R.id.recyclerView_myEncounters);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        //fetch data and on ExpandableRecyclerAdapter
+        recyclerAdapter = new ExpandableRecyclerAdapter(Singleton.getInstance().myEncounters);
+        recyclerView.setAdapter(recyclerAdapter);
 
         // back button to return to home screen
         view.findViewById(R.id.button_backEncounters).setOnClickListener(new View.OnClickListener() {
