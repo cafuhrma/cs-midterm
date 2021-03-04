@@ -5,28 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class RandomEncountersFragment extends Fragment {
     private ArrayList<Encounter> encounters;
-    private EncounterAdapter encounterAdapter;
-    private ListView encounterListView;
+    private ExpandableRecyclerAdapter recyclerAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(
@@ -40,8 +32,12 @@ public class RandomEncountersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         encounters = new ArrayList<>();
-        encounterListView = view.findViewById(R.id.listView_randomEncounters);
-        encounterAdapter = new EncounterAdapter(getActivity(), R.layout.item_encounter, encounters);
+        recyclerView = view.findViewById(R.id.recyclerView_randomEncounters);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        //fetch data and on ExpandableRecyclerAdapter
+        recyclerAdapter = new ExpandableRecyclerAdapter(encounters);
 
         // return to create encounters screen
         view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)
@@ -73,19 +69,13 @@ public class RandomEncountersFragment extends Fragment {
             }
             if (isNew == true) {
                 encounters.add(temp);
-                encounterAdapter.notifyDataSetChanged(); // notify observers
+                recyclerAdapter.notifyDataSetChanged(); // notify observers
             }
             else { i--; }
         }
 
-        // Assign adapter to the ListView
-        encounterListView.setAdapter(encounterAdapter);
-        encounterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Singleton.getInstance().myEncounters.add(encounters.get(position));
-            }
-        });
+        // Assign adapter to the RecyclerView
+        recyclerView.setAdapter(recyclerAdapter);
 
         // Button to generate new random encounters
         view.findViewById(R.id.button_generate).setOnClickListener(new View.OnClickListener() {
@@ -95,7 +85,7 @@ public class RandomEncountersFragment extends Fragment {
                 for (Encounter encounter : encounters) {
                     encounter.emptyMonsters();
                     encounter.randomEncounter();
-                    encounterAdapter.notifyDataSetChanged();
+                    recyclerAdapter.notifyDataSetChanged();
                 }
             }
         });

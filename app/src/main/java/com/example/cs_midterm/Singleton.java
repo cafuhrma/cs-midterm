@@ -25,6 +25,7 @@ public class Singleton {
 
     private Singleton() {
         monsterList = new ArrayList<>();
+        fillList();
         encounter = new Encounter();
         myEncounters = new ArrayList<>();
     }

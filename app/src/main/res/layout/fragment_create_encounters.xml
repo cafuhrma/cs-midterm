@@ -15,6 +15,9 @@
         android:layout_height="31dp"
         android:layout_marginTop="50dp"
         android:backgroundTint="#FF0000"
+        android:dropDownWidth="match_parent"
+        android:prompt="@string/difficulty"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
         app:layout_constraintTop_toBottomOf="@+id/spinner_partySize" />
@@ -26,6 +29,9 @@
         android:layout_height="31dp"
         android:layout_marginTop="50dp"
         android:backgroundTint="#FF0000"
+        android:dropDownWidth="match_parent"
+        android:prompt="@string/party_size"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
         app:layout_constraintTop_toBottomOf="@+id/spinner_partyLevel" />
@@ -122,6 +128,9 @@
         android:layout_height="31dp"
         android:layout_marginTop="50dp"
         android:backgroundTint="#FF0000"
+        android:dropDownWidth="match_parent"
+        android:prompt="@string/party_level"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
         app:layout_constraintTop_toTopOf="parent" />
@@ -148,6 +157,9 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="34dp"
         android:backgroundTint="#FF0000"
+        android:dropDownWidth="match_parent"
+        android:prompt="@string/encounter_type"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_encounterType"
         app:layout_constraintTop_toBottomOf="@+id/spinner_difficulty" />

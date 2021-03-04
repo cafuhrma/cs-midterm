@@ -19,8 +19,7 @@
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backRandomList"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView_randomEncounters" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_backRandomList"
@@ -33,14 +32,13 @@
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_generate"
-        app:layout_constraintTop_toBottomOf="@+id/listView_randomEncounters" />
+        app:layout_constraintStart_toEndOf="@+id/button_generate" />
 
-    <ListView
-        android:id="@+id/listView_randomEncounters"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_randomEncounters"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_backRandomList"
+        app:layout_constraintBottom_toTopOf="@+id/button_generate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

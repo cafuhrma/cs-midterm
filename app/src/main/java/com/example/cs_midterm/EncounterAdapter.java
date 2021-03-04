@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: make obsolete and delete (as well as item_encounter)
 public class EncounterAdapter extends ArrayAdapter<Encounter> {
     private ArrayList<Encounter> encounterList;
 

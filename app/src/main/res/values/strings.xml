@@ -89,6 +89,8 @@
     <string name="generate">Generate</string>
     <string name="size">Size</string>
     <string name="encounter">Encounter</string>
+    <string name="encounter_x">Encounter X</string>
+    <string name="todo">TODO</string>
 
     <string-array name="partyLevels">
         <item>1</item>
