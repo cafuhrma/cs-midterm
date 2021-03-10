@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,11 +11,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 public class ViewEncountersFragment extends Fragment {
     private RecyclerView recyclerView;
-    private ExpandableRecyclerAdapter recyclerAdapter;
+    private ExpandableEncounterAdapter recyclerAdapter;
 
     @Override
     public View onCreateView(
@@ -34,8 +31,8 @@ public class ViewEncountersFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        //fetch data and on ExpandableRecyclerAdapter
-        recyclerAdapter = new ExpandableRecyclerAdapter(Singleton.getInstance().myEncounters);
+        //fetch data and on ExpandableEncounterAdapter
+        recyclerAdapter = new ExpandableEncounterAdapter(Singleton.getInstance().myEncounters);
         recyclerView.setAdapter(recyclerAdapter);
 
         // back button to return to home screen

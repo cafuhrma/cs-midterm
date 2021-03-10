@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -16,15 +15,14 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
 import java.util.List;
 
-public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRecyclerAdapter.ViewHolder> {
+public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableEncounterAdapter.ViewHolder> {
     private List<Encounter> repos;
     private SparseBooleanArray expandState = new SparseBooleanArray();
     private Context context;
 
-    public ExpandableRecyclerAdapter(List<Encounter> repos) {
+    public ExpandableEncounterAdapter(List<Encounter> repos) {
         this.repos = repos;
         //set initial expanded state to false
         for (int i = 0; i < repos.size(); i++) {
@@ -33,19 +31,19 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
     }
 
     @Override
-    public ExpandableRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ExpandableEncounterAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         this.context = viewGroup.getContext();
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.expandable_encounter, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ExpandableRecyclerAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ExpandableEncounterAdapter.ViewHolder viewHolder, final int position) {
 
         viewHolder.setIsRecyclable(false);
 
         Encounter encounter = repos.get(position); // Get the data item for this position
-        MonstersAdapter monstersAdapter = new MonstersAdapter(context, R.layout.item_monster, encounter.getMonsters());
+        MonstersAdapter monstersAdapter = new MonstersAdapter(context, R.layout.expandable_monster, encounter.getMonsters());
         viewHolder.lvEncounter.setAdapter(monstersAdapter);
         viewHolder.tvHeading.setText("Encounter " + (position+1));
 

@@ -38,7 +38,7 @@ public class BuildEncounterFragment extends Fragment {
         monsterListView = view.findViewById(R.id.listView_monsters);
         monsterSearch = view.findViewById(R.id.editText_monsterSearch);
         encounter = new Encounter();
-        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.item_monster, Singleton.getInstance().monsterList);
+        monsterSearchAdapter = new MonstersAdapter(getActivity(), R.layout.expandable_monster, Singleton.getInstance().monsterList);
 
         // back button for returning to create encounters screen
         view.findViewById(R.id.button_backBuildEncounter).setOnClickListener(new View.OnClickListener() {

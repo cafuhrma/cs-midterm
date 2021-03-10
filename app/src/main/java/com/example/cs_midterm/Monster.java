@@ -15,6 +15,7 @@ public class Monster {
     public List<Proficiencies> proficiencies;
     public List<SpecialAbility> special_abilities;
     public List<Action> actions;
+    public List<Reaction> reactions;
     public List<LegendaryAction> legendary_actions;
     public Senses senses;
     public Speed speed;
@@ -122,6 +123,10 @@ public class Monster {
 
     public List<Action> getActions() {
         return actions;
+    }
+
+    public List<Reaction> getReactions() {
+        return reactions;
     }
 
     public List<LegendaryAction> getLegendary_actions() {

@@ -13,4 +13,8 @@ public class Proficiencies {
     public Proficiency getProficiency() {
         return proficiency;
     }
+
+    public String proficiencyString() {
+        return proficiency.getName() + " +" + value;
+    }
 }

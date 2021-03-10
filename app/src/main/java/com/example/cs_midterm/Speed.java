@@ -23,4 +23,24 @@ public class Speed {
     public String getClimb() {
         return climb;
     }
+
+    public String speedString() {
+        String speeds = "";
+        if (walk != null) {
+            speeds += walk;
+        }
+        if (swim != null) {
+            speeds += ", swim " + swim;
+        }
+        if (fly != null) {
+            speeds += ", fly " + fly;
+        }
+        if (burrow != null) {
+            speeds += ", burrow " + burrow;
+        }
+        if (climb != null) {
+            speeds += ", climb " + climb;
+        }
+        return speeds;
+    }
 }

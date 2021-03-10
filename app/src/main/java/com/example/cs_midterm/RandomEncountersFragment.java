@@ -11,13 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
 public class RandomEncountersFragment extends Fragment {
     private ArrayList<Encounter> encounters;
-    private ExpandableRecyclerAdapter recyclerAdapter;
+    private ExpandableEncounterAdapter recyclerAdapter;
     private RecyclerView recyclerView;
 
     @Override
@@ -36,8 +35,8 @@ public class RandomEncountersFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        //fetch data and on ExpandableRecyclerAdapter
-        recyclerAdapter = new ExpandableRecyclerAdapter(encounters);
+        //fetch data and on ExpandableEncounterAdapter
+        recyclerAdapter = new ExpandableEncounterAdapter(encounters);
 
         // return to create encounters screen
         view.findViewById(R.id.button_backRandomList).setOnClickListener(view1 -> NavHostFragment.findNavController(RandomEncountersFragment.this)

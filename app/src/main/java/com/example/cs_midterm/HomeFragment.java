@@ -23,6 +23,8 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Singleton.getInstance(); // fetch data
+
         view.findViewById(R.id.button_my_encounters).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

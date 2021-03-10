@@ -22,12 +22,14 @@ public class Singleton {
     public ArrayList<Monster> monsterList;
     public Encounter encounter;
     public ArrayList<Encounter> myEncounters;
+    public ArrayList<Monster> myMonsters;
 
     private Singleton() {
         monsterList = new ArrayList<>();
         fillList();
         encounter = new Encounter();
         myEncounters = new ArrayList<>();
+        myMonsters = new ArrayList<>();
     }
 
     public static synchronized Singleton getInstance() {
