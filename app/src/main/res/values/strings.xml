@@ -92,6 +92,7 @@
     <string name="encounter_x">Encounter X</string>
     <string name="todo">TODO</string>
     <string name="save">Save</string>
+    <string name="details">details</string>
 
     <string-array name="partyLevels">
         <item>1</item>

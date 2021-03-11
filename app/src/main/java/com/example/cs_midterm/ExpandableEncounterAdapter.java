@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -43,8 +44,8 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
         viewHolder.setIsRecyclable(false);
 
         Encounter encounter = repos.get(position); // Get the data item for this position
-        MonstersAdapter monstersAdapter = new MonstersAdapter(context, R.layout.expandable_monster, encounter.getMonsters());
-        viewHolder.lvEncounter.setAdapter(monstersAdapter);
+        ExpandableMonsterAdapter recyclerAdapter = new ExpandableMonsterAdapter(encounter.getMonsters());
+        viewHolder.recyclerView.setAdapter(recyclerAdapter);
         viewHolder.tvHeading.setText("Encounter " + (position+1));
 
         //check if view is expanded
@@ -75,7 +76,7 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView tvHeading;
-        private ListView lvEncounter;
+        private RecyclerView recyclerView;
         private Button saveButton;
         public RelativeLayout buttonLayout;
         public LinearLayout expandableLayout;
@@ -83,8 +84,11 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
         public ViewHolder(View view) {
             super(view);
 
-            tvHeading = (TextView)view.findViewById(R.id.tv_heading);
-            lvEncounter = (ListView)view.findViewById(R.id.expandable_listView);
+            tvHeading = (TextView) view.findViewById(R.id.tv_heading);
+            recyclerView = (RecyclerView) view.findViewById(R.id.expandable_recyclerView);
+            recyclerView.setHasFixedSize(true);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+            recyclerView.setLayoutManager(layoutManager);
             saveButton = (Button) view.findViewById(R.id.button_saveRandomEncounter);
             buttonLayout = (RelativeLayout) view.findViewById(R.id.button);
             expandableLayout = (LinearLayout) view.findViewById(R.id.expandableLayout);

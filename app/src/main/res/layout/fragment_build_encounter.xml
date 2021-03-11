@@ -21,8 +21,7 @@
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backBuildEncounter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView_monsters" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_backBuildEncounter"
@@ -37,8 +36,7 @@
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_saveEncounter"
-        app:layout_constraintTop_toBottomOf="@+id/listView_monsters" />
+        app:layout_constraintStart_toEndOf="@+id/button_saveEncounter" />
 
     <EditText
         android:id="@+id/editText_monsterSearch"
@@ -55,31 +53,18 @@
         android:shadowColor="#000000"
         android:textColor="#000000"
         android:textColorHint="#9E9898"
-        app:layout_constraintBottom_toTopOf="@+id/textView_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView_result"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/listView_monsters"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_monsterSearch" />
-
-    <ListView
-        android:id="@+id/listView_monsters"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_buildEncounters"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button_saveEncounter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_result">
-
-    </ListView>
+        app:layout_constraintTop_toBottomOf="@+id/editText_monsterSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

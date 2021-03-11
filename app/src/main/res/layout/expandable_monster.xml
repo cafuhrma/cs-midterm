@@ -27,12 +27,25 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
                 android:layout_toStartOf="@+id/button"
                 android:text="@string/monster_name"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_subheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toStartOf="@+id/button"
+                android:text="@string/details"
+                android:textSize="12sp" />
 
             <!-- Dropdown Button -->
             <RelativeLayout
@@ -58,6 +71,7 @@
             android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/stat_block_background"
             android:orientation="horizontal">
 
             <LinearLayout

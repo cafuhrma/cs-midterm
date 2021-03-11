@@ -43,7 +43,8 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
 
         Monster monster = repos.get(position); // Get the data item for this position
 
-        viewHolder.tvHeading.setText(monster.getName() + " " + monster.getSize() + " " + monster.getType()
+        viewHolder.tvHeading.setText(monster.getName());
+        viewHolder.tvSubheading.setText(monster.getSize() + " " + monster.getType()
                 + " CR:" + monster.getChallenge_rating());
         viewHolder.name.setText(monster.getName());
         viewHolder.type.setText(monster.getSize() + " " + monster.getType() + ", " + monster.getAlignment());
@@ -63,35 +64,48 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
                 skills += proficiency.proficiencyString() + " ";
             }
         }
-        viewHolder.skillsSaves.setText("Saving Throws: " + saves + "\nSkills: " + skills);
+        viewHolder.skillsSaves.setText("Saving Throws: " + saves + "\nSkills: " + skills + "\n");
         // TODO: add senses and immunities/resistances/vulnerabilities
         viewHolder.languages.setText("Languages: " + monster.getLanguages());
         viewHolder.cr.setText("CR: " + monster.getChallenge_rating() + " (" + monster.getXp() + " XP)");
+        // Features & Traits
         if (monster.getSpecial_abilities() != null) {
-            String features = "FEATURES\n";
+            String features = "\nFEATURES\n";
             for (SpecialAbility feature : monster.getSpecial_abilities()) {
-                features += feature.name + ": " + feature.getDesc() + "\n";
+                features += feature.name + ": " + feature.getDesc() + "\n\n";
             }
             viewHolder.features.setText(features);
         }
-        String actions = "ACTIONS\n";
+        else {
+            viewHolder.features.setVisibility(View.GONE);
+        }
+        // Actions
+        String actions = "\nACTIONS\n";
         for (Action action : monster.getActions()) {
-            actions += action.getName() + ": " + action.getDesc() + "\n";
+            actions += action.getName() + ": " + action.getDesc() + "\n\n";
         }
         viewHolder.actions.setText(actions);
+        // Reactions
         if (monster.getReactions() != null) {
-            String reactions = "REACTIONS\n";
+            String reactions = "\nREACTIONS\n";
             for (Reaction reaction : monster.getReactions()) {
-                reactions += reaction.getName() + ": " + reaction.getDesc() + "\n";
+                reactions += reaction.getName() + ": " + reaction.getDesc() + "\n\n";
             }
             viewHolder.reactions.setText(reactions);
         }
+        else {
+            viewHolder.reactions.setVisibility(View.GONE);
+        }
+        // Legendary Actions
         if (monster.getLegendary_actions() != null) {
-            String legendaryActions = "LEGENDARY ACTIONS\n";
+            String legendaryActions = "\nLEGENDARY ACTIONS\n";
             for (LegendaryAction legendaryAction : monster.getLegendary_actions()) {
                 legendaryActions += legendaryAction.getName() + ": " + legendaryAction.getDesc() + "\n";
             }
             viewHolder.legendaryActions.setText(legendaryActions);
+        }
+        else {
+            viewHolder.legendaryActions.setVisibility(View.GONE);
         }
 
         //check if view is expanded
@@ -115,6 +129,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvHeading;
+        private TextView tvSubheading;
         public RelativeLayout buttonLayout;
         public LinearLayout expandableLayout;
         private TextView name;
@@ -133,6 +148,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
             super(view);
 
             tvHeading = view.findViewById(R.id.tv_heading);
+            tvSubheading = view.findViewById(R.id.tv_subheading);
             buttonLayout = view.findViewById(R.id.button);
             expandableLayout = view.findViewById(R.id.expandableLayout);
             name = view.findViewById(R.id.tv_name);

@@ -32,7 +32,7 @@ public class ViewMonstersFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         //fetch data and on ExpandableEncounterAdapter
-        recyclerAdapter = new ExpandableMonsterAdapter(Singleton.getInstance().monsterList); // TODO: change to myMonsters
+        recyclerAdapter = new ExpandableMonsterAdapter(Singleton.getInstance().myMonsters);
         recyclerView.setAdapter(recyclerAdapter);
 
         // return to home screen
