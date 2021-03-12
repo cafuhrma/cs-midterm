@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -14,15 +16,19 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMonsterAdapter.ViewHolder> {
+public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMonsterAdapter.ViewHolder> implements Filterable {
     private List<Monster> repos;
+    private List<Monster> reposFull;
     private SparseBooleanArray expandState = new SparseBooleanArray();
     private Context context;
 
     public ExpandableMonsterAdapter(List<Monster> repos) {
         this.repos = repos;
+        reposFull = new ArrayList<>(repos);
         //set initial expanded state to false
         for (int i = 0; i < repos.size(); i++) {
             expandState.append(i, false);
@@ -44,16 +50,18 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         Monster monster = repos.get(position); // Get the data item for this position
 
         viewHolder.tvHeading.setText(monster.getName());
-        viewHolder.tvSubheading.setText(monster.getSize() + " " + monster.getType()
-                + " CR:" + monster.getChallenge_rating());
+        String subHead = monster.getSize() + " " + monster.getType() + " CR:" + monster.getChallenge_rating();
+        viewHolder.tvSubheading.setText(subHead);
         viewHolder.name.setText(monster.getName());
-        viewHolder.type.setText(monster.getSize() + " " + monster.getType() + ", " + monster.getAlignment());
-        viewHolder.acHpSpeed.setText("Armor Class: " + monster.getArmor_class() +
-                "\nHit Points: " + monster.getHit_points() + " (" + monster.getHit_dice() + ")\n" +
-                "Speed: " + monster.getSpeed().speedString());
-        viewHolder.abilities.setText("STR: " + monster.getStrength() + " DEX: " + monster.getDexterity() +
+        String type = monster.getSize() + " " + monster.getType() + ", " + monster.getAlignment();
+        viewHolder.type.setText(type);
+        String ac = "Armor Class: " + monster.getArmor_class() + "\nHit Points: " + monster.getHit_points() +
+                " (" + monster.getHit_dice() + ")\n" + "Speed: " + monster.getSpeed().speedString();
+        viewHolder.acHpSpeed.setText(ac);
+        String abilities = "STR: " + monster.getStrength() + " DEX: " + monster.getDexterity() +
                 " CON: " + monster.getConstitution() + " INT: " + monster.getIntelligence() +
-                " WIS: " + monster.getWisdom() + " CHA: " + monster.getCharisma());
+                " WIS: " + monster.getWisdom() + " CHA: " + monster.getCharisma();
+        viewHolder.abilities.setText(abilities);
         String saves = "";
         String skills = "";
         for (Proficiencies proficiency : monster.getProficiencies()) {
@@ -64,10 +72,13 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
                 skills += proficiency.proficiencyString() + " ";
             }
         }
-        viewHolder.skillsSaves.setText("Saving Throws: " + saves + "\nSkills: " + skills + "\n");
+        String skillsSaves = "Saving Throws: " + saves + "\nSkills: " + skills + "\n";
+        viewHolder.skillsSaves.setText(skillsSaves);
         // TODO: add senses and immunities/resistances/vulnerabilities
-        viewHolder.languages.setText("Languages: " + monster.getLanguages());
-        viewHolder.cr.setText("CR: " + monster.getChallenge_rating() + " (" + monster.getXp() + " XP)");
+        String language = "Languages: " + monster.getLanguages();
+        viewHolder.languages.setText(language);
+        String cr = "CR: " + monster.getChallenge_rating() + " (" + monster.getXp() + " XP)";
+        viewHolder.cr.setText(cr);
         // Features & Traits
         if (monster.getSpecial_abilities() != null) {
             String features = "\nFEATURES\n";
@@ -188,4 +199,40 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         animator.setInterpolator(new LinearInterpolator());
         return animator;
     }
+
+    @Override
+    public Filter getFilter() {
+        return reposFilter;
+    }
+
+    private Filter reposFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Monster> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(reposFull);
+            }
+            else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Monster monster : reposFull) {
+                    if (monster.getName().toLowerCase().startsWith(filterPattern)) {
+                        filteredList.add(monster);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            repos.clear();
+            repos.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

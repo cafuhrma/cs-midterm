@@ -8,19 +8,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SearchView;
 
 public class BuildEncounterFragment extends Fragment {
     private RecyclerView recyclerView;
-    private EditText monsterSearch;
     private ExpandableMonsterAdapter recyclerAdapter;
     private Encounter encounter;
 
@@ -30,6 +27,7 @@ public class BuildEncounterFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_build_encounter, container, false);
     }
 
@@ -38,7 +36,6 @@ public class BuildEncounterFragment extends Fragment {
 
         // initialize views & variables
         encounter = new Encounter();
-        monsterSearch = view.findViewById(R.id.editText_monsterSearch);
         recyclerView = view.findViewById(R.id.recyclerView_buildEncounters);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -46,7 +43,6 @@ public class BuildEncounterFragment extends Fragment {
         //fetch data and on ExpandableEncounterAdapter
         recyclerAdapter = new ExpandableMonsterAdapter(Singleton.getInstance().monsterList);
         recyclerView.setAdapter(recyclerAdapter);
-        // TODO: add search filter
 
         // back button for returning to create encounters screen
         view.findViewById(R.id.button_backBuildEncounter).setOnClickListener(new View.OnClickListener() {
@@ -56,5 +52,26 @@ public class BuildEncounterFragment extends Fragment {
                         .navigate(R.id.action_buildEncounterFragment_to_createEncountersFragment);
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recyclerAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
