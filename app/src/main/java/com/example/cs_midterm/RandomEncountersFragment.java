@@ -84,8 +84,16 @@ public class RandomEncountersFragment extends Fragment {
                 for (Encounter encounter : encounters) {
                     encounter.emptyMonsters();
                     encounter.randomEncounter();
-                    recyclerAdapter.notifyDataSetChanged();
+                    recyclerAdapter.notifyDataSetChanged(); // notify observers
                 }
+            }
+        });
+
+        // Button to save saved encounters
+        view.findViewById(R.id.button_saveRandom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).saveData(); // save any changes made to myEncounters
             }
         });
     }

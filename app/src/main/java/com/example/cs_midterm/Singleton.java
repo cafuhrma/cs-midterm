@@ -1,5 +1,6 @@
 package com.example.cs_midterm;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
@@ -28,8 +29,6 @@ public class Singleton {
         monsterList = new ArrayList<>();
         fillList();
         encounter = new Encounter();
-        myEncounters = new ArrayList<>();
-        myMonsters = new ArrayList<>();
     }
 
     public static synchronized Singleton getInstance() {
