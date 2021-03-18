@@ -437,9 +437,9 @@ public class Encounter {
                 break;
         }
 
-        // TODO horde encounter generation
+        // Horde encounter generation
         if (type.equals("Horde")) {
-            int numMonsters = getRandomNumber(5, 20); // determine random number of monsters (5-20)
+            int numMonsters = getRandomNumber(3, 10); // determine random number of monsters (3-20)
             int typesOfMonsters = rand.nextInt(3) + 1;
             int minMonsterXP = minThreshold / numMonsters;
             int maxMonsterXP = maxThreshold / numMonsters;
@@ -450,12 +450,13 @@ public class Encounter {
                 }
             }
             // populate the encounter
-            for (int i = 0; i < numMonsters; i++) {
+            for (int i = 0; i < typesOfMonsters; i++) {
                 int num = rand.nextInt(filteredList.size());
-                monsters.add(filteredList.get(num));
+                for (int j = 0; j < numMonsters/typesOfMonsters; j++) {
+                    monsters.add(filteredList.get(num));
+                }
+                filteredList.remove(num); // remove the recently added monster from the list
             }
-            // TODO check if xp is within the thresholds of the desired difficulty
-            calculateXP();
             filteredList.clear();
         }
 

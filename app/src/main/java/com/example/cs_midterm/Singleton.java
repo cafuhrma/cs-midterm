@@ -39,6 +39,9 @@ public class Singleton {
     }
 
     public void fillList() {
+        if (monsterList != null) {
+            monsterList.clear();
+        }
         // create Retrofit object for API use
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.dnd5eapi.co/api/")

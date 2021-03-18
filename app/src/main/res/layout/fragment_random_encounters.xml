@@ -13,30 +13,26 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/generate"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_saveRandom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_randomEncounters" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_backRandomList"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/back"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_saveRandom"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_randomEncounters" />
+        app:layout_constraintStart_toEndOf="@+id/button_saveRandom" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_randomEncounters"
@@ -53,14 +49,12 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/save"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backRandomList"
-        app:layout_constraintStart_toEndOf="@+id/button_generate"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_randomEncounters" />
+        app:layout_constraintStart_toEndOf="@+id/button_generate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

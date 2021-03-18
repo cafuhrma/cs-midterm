@@ -84,13 +84,23 @@
                     android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="Monster Name"
+                    android:textColor="#5C1F1F"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="creature type"
+                    android:textStyle="italic" />
+
+                <View
+                    android:id="@+id/view_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
 
                 <TextView
                     android:id="@+id/tv_acHp"
@@ -98,14 +108,56 @@
                     android:layout_height="wrap_content"
                     android:text="TextView" />
 
+                <View
+                    android:id="@+id/view_divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
+
                 <TextView
                     android:id="@+id/tv_abilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
 
+                <View
+                    android:id="@+id/view_divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
+
                 <TextView
                     android:id="@+id/tv_skillsSaves"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_vulnerabilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_resistances"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_immunities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_conditionImmunities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_senses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
@@ -122,11 +174,32 @@
                     android:layout_height="wrap_content"
                     android:text="TextView" />
 
+                <View
+                    android:id="@+id/view_divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
+
                 <TextView
                     android:id="@+id/tv_features"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="Features" />
+
+                <TextView
+                    android:id="@+id/tv_actionsDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Actions"
+                    android:textColor="#5C1F1F"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
 
                 <TextView
                     android:id="@+id/tv_actions"
@@ -135,10 +208,40 @@
                     android:text="Actions" />
 
                 <TextView
+                    android:id="@+id/tv_reactionsDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reactions"
+                    android:textColor="#5C1F1F"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider6"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
+
+                <TextView
                     android:id="@+id/tv_reactions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Reactions" />
+
+                <TextView
+                    android:id="@+id/tv_legendaryDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Legendary Actions"
+                    android:textColor="#5C1F1F"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider7"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#A80D0D" />
 
                 <TextView
                     android:id="@+id/tv_legendaryActions"

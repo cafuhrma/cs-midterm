@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,14 +76,55 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         }
         String skillsSaves = "Saving Throws: " + saves + "\nSkills: " + skills + "\n";
         viewHolder.skillsSaves.setText(skillsSaves);
-        // TODO: add senses and immunities/resistances/vulnerabilities
+        if (monster.getDamage_vulnerabilities() != null) {
+            String vulnerabilities = "Damage Vulnerabilities: ";
+            for (String vulnerability : monster.getDamage_vulnerabilities()) {
+                vulnerabilities += vulnerability + ", ";
+            }
+            viewHolder.vulnerabilities.setText(vulnerabilities);
+        }
+        else {
+            viewHolder.vulnerabilities.setVisibility(View.GONE);
+        }
+        if (monster.getDamage_resistances() != null) {
+            String resistances = "Damage Resistances: ";
+            for (String resistance : monster.getDamage_resistances()) {
+                resistances += resistance + ", ";
+            }
+            viewHolder.resistances.setText(resistances);
+        }
+        else {
+            viewHolder.resistances.setVisibility(View.GONE);
+        }
+        if (monster.getDamage_immunities() != null) {
+            String immunities = "Damage Immunities: ";
+            for (String immunity : monster.getDamage_immunities()) {
+                immunities += immunity + ", ";
+            }
+            viewHolder.immunities.setText(immunities);
+        }
+        else {
+            viewHolder.immunities.setVisibility(View.GONE);
+        }
+        if (monster.getCondition_immunities() != null ) {
+            String conditionImmunities = "Condition Immunities: ";
+            for (ConditionType condition : monster.getCondition_immunities()) {
+                conditionImmunities += condition.getName() + ", ";
+            }
+            viewHolder.conditionImmunities.setText(conditionImmunities);
+        }
+        else {
+            viewHolder.conditionImmunities.setVisibility(View.GONE);
+        }
+        String senses = "Senses: " + monster.getSenses().senseString();
+        viewHolder.senses.setText(senses);
         String language = "Languages: " + monster.getLanguages();
         viewHolder.languages.setText(language);
         String cr = "CR: " + monster.getChallenge_rating() + " (" + monster.getXp() + " XP)";
         viewHolder.cr.setText(cr);
         // Features & Traits
-        if (monster.getSpecial_abilities() != null) {
-            String features = "\nFEATURES\n";
+        if (monster.getSpecial_abilities() != null ) {
+            String features = "";
             for (SpecialAbility feature : monster.getSpecial_abilities()) {
                 features += feature.name + ": " + feature.getDesc() + "\n\n";
             }
@@ -91,14 +134,14 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
             viewHolder.features.setVisibility(View.GONE);
         }
         // Actions
-        String actions = "\nACTIONS\n";
+        String actions = "";
         for (Action action : monster.getActions()) {
             actions += action.getName() + ": " + action.getDesc() + "\n\n";
         }
         viewHolder.actions.setText(actions);
         // Reactions
         if (monster.getReactions() != null) {
-            String reactions = "\nREACTIONS\n";
+            String reactions = "";
             for (Reaction reaction : monster.getReactions()) {
                 reactions += reaction.getName() + ": " + reaction.getDesc() + "\n\n";
             }
@@ -106,10 +149,12 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         }
         else {
             viewHolder.reactions.setVisibility(View.GONE);
+            viewHolder.displayReactions.setVisibility(View.GONE);
+            viewHolder.reactionsDivider.setVisibility(View.GONE);
         }
         // Legendary Actions
         if (monster.getLegendary_actions() != null) {
-            String legendaryActions = "\nLEGENDARY ACTIONS\n";
+            String legendaryActions = "";
             for (LegendaryAction legendaryAction : monster.getLegendary_actions()) {
                 legendaryActions += legendaryAction.getName() + ": " + legendaryAction.getDesc() + "\n";
             }
@@ -117,6 +162,8 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         }
         else {
             viewHolder.legendaryActions.setVisibility(View.GONE);
+            viewHolder.displayLegendary.setVisibility(View.GONE);
+            viewHolder.legendaryDivider.setVisibility(View.GONE);
         }
 
         //check if view is expanded
@@ -148,11 +195,21 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         private TextView acHpSpeed;
         private TextView abilities;
         private TextView skillsSaves;
+        private TextView vulnerabilities;
+        private TextView resistances;
+        private TextView immunities;
+        private TextView conditionImmunities;
+        private TextView senses;
         private TextView languages;
         private TextView cr;
         private TextView features;
+        private TextView displayActions;
         private TextView actions;
+        private TextView displayReactions;
+        private View reactionsDivider;
         private TextView reactions;
+        private TextView displayLegendary;
+        private View legendaryDivider;
         private TextView legendaryActions;
 
         public ViewHolder(View view) {
@@ -167,11 +224,21 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
             acHpSpeed = view.findViewById(R.id.tv_acHp);
             abilities = view.findViewById(R.id.tv_abilities);
             skillsSaves = view.findViewById(R.id.tv_skillsSaves);
+            vulnerabilities = view.findViewById(R.id.tv_vulnerabilities);
+            resistances = view.findViewById(R.id.tv_resistances);
+            immunities = view.findViewById(R.id.tv_immunities);
+            conditionImmunities = view.findViewById(R.id.tv_conditionImmunities);
+            senses = view.findViewById(R.id.tv_senses);
             languages = view.findViewById(R.id.tv_languages);
             cr = view.findViewById(R.id.tv_cr);
             features = view.findViewById(R.id.tv_features);
+            displayActions = view.findViewById(R.id.tv_actionsDisplay);
             actions = view.findViewById(R.id.tv_actions);
+            displayReactions = view.findViewById(R.id.tv_reactionsDisplay);
+            reactionsDivider = view.findViewById(R.id.view_divider6);
             reactions = view.findViewById(R.id.tv_reactions);
+            displayLegendary = view.findViewById(R.id.tv_legendaryDisplay);
+            legendaryDivider = view.findViewById(R.id.view_divider7);
             legendaryActions = view.findViewById(R.id.tv_legendaryActions);
         }
     }
