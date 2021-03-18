@@ -5,13 +5,13 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#2C2C2C"
     tools:context=".RandomEncountersFragment">
 
     <Button
         android:id="@+id/button_generate"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/button_backRandomList"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -46,8 +46,8 @@
 
     <Button
         android:id="@+id/button_saveRandom"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"

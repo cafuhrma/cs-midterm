@@ -11,6 +11,7 @@ public class Encounter {
     private int easyThreshold, mediumThreshold, hardThreshold, deadlyThreshold;
     private String difficulty;
     private String type; // type of encounter
+    private String name; // name of the encounter
 
     // class constructor
     public Encounter() {
@@ -52,6 +53,9 @@ public class Encounter {
     public String getDifficulty() {
         return difficulty;
     }
+    public String getName() {
+        return name;
+    }
 
     // mutators
     public void setMonsters(ArrayList<Monster> monsters) {
@@ -86,6 +90,9 @@ public class Encounter {
     }
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     // calculate the total amount of xp for the encounter
@@ -443,6 +450,8 @@ public class Encounter {
             int typesOfMonsters = rand.nextInt(3) + 1;
             int minMonsterXP = minThreshold / numMonsters;
             int maxMonsterXP = maxThreshold / numMonsters;
+            if (minMonsterXP < 10) { minMonsterXP = 10; }
+            if (maxMonsterXP < 10) { maxMonsterXP = 10; }
             // loop through monster list for available monsters
             for (Monster monster : monsterList) {
                 if (monster.getXp() >= minMonsterXP && monster.getXp() <= maxMonsterXP) {

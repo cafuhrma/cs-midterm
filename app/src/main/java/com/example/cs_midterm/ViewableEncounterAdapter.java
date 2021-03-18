@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,12 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableEncounterAdapter.ViewHolder> {
+public class ViewableEncounterAdapter extends RecyclerView.Adapter<ViewableEncounterAdapter.ViewHolder> {
     private List<Encounter> repos;
     private SparseBooleanArray expandState = new SparseBooleanArray();
     private Context context;
 
-    public ExpandableEncounterAdapter(List<Encounter> repos) {
+    public ViewableEncounterAdapter(List<Encounter> repos) {
         this.repos = repos;
         //set initial expanded state to false
         for (int i = 0; i < repos.size(); i++) {
@@ -33,14 +34,14 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
     }
 
     @Override
-    public ExpandableEncounterAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewableEncounterAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         this.context = viewGroup.getContext();
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.expandable_encounter, viewGroup, false);
-        return new ViewHolder(view);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.viewable_encounter, viewGroup, false);
+        return new ViewableEncounterAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ExpandableEncounterAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewableEncounterAdapter.ViewHolder viewHolder, final int position) {
 
         viewHolder.setIsRecyclable(false);
 
@@ -61,10 +62,11 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
             }
         });
 
-        viewHolder.saveButton.setOnClickListener(new View.OnClickListener() {
+        viewHolder.removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Singleton.getInstance().myEncounters.add(encounter);
+                Singleton.getInstance().myEncounters.remove(position);
+                notifyDataSetChanged();
             }
         });
 
@@ -95,19 +97,19 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
 
         private TextView ptHeading;
         private RecyclerView recyclerView;
-        private Button saveButton;
+        private Button removeButton;
         public RelativeLayout buttonLayout;
         public LinearLayout expandableLayout;
 
         public ViewHolder(View view) {
             super(view);
 
-            ptHeading = (TextView) view.findViewById(R.id.pt_heading);
+            ptHeading = (EditText) view.findViewById(R.id.pt_heading);
             recyclerView = (RecyclerView) view.findViewById(R.id.expandable_recyclerView);
             recyclerView.setHasFixedSize(true);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
             recyclerView.setLayoutManager(layoutManager);
-            saveButton = (Button) view.findViewById(R.id.button_saveRandomEncounter);
+            removeButton = (Button) view.findViewById(R.id.button_removeEncounter);
             buttonLayout = (RelativeLayout) view.findViewById(R.id.button);
             expandableLayout = (LinearLayout) view.findViewById(R.id.expandableLayout);
         }

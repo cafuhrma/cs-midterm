@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewEncountersFragment extends Fragment {
     private RecyclerView recyclerView;
-    private ExpandableEncounterAdapter recyclerAdapter;
+    private ViewableEncounterAdapter recyclerAdapter;
 
     @Override
     public View onCreateView(
@@ -32,7 +32,7 @@ public class ViewEncountersFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         //fetch data and on ExpandableEncounterAdapter
-        recyclerAdapter = new ExpandableEncounterAdapter(Singleton.getInstance().myEncounters);
+        recyclerAdapter = new ViewableEncounterAdapter(Singleton.getInstance().myEncounters);
         recyclerView.setAdapter(recyclerAdapter);
 
         // back button to return to home screen
@@ -41,6 +41,14 @@ public class ViewEncountersFragment extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(ViewEncountersFragment.this)
                         .navigate(R.id.action_ViewEncountersFragment_to_HomeFragment);
+            }
+        });
+
+        // save any changes made to myEncounters
+        view.findViewById(R.id.button_saveViewEncounters).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).saveData(); // save any changes made to myEncounters
             }
         });
     }
