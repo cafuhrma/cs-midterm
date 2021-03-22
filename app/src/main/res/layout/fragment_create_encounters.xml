@@ -8,65 +8,161 @@
     android:background="#2C2C2C"
     tools:context=".CreateEncountersFragment">
 
-    <Spinner
-        android:id="@+id/spinner_difficulty"
-        style="@style/Widget.AppCompat.Spinner.DropDown"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#FF0000"
-        android:dropDownWidth="match_parent"
-        android:prompt="@string/difficulty"
-        android:spinnerMode="dropdown"
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/stat_block_background"
+        app:layout_constraintBottom_toTopOf="@+id/button_buildEncounter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_partySize" />
-
-    <Spinner
-        android:id="@+id/spinner_partySize"
-        style="@style/Widget.AppCompat.Spinner.DropDown"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#FF0000"
-        android:dropDownWidth="match_parent"
-        android:prompt="@string/party_size"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_partyLevel" />
-
-    <TextView
-        android:id="@+id/textView_partyLevel3"
-        android:layout_width="75dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="60dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:text="@string/difficulty"
-        android:textColor="#FF0000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_partyLevel2" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView_partyLevel2"
-        android:layout_width="75dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="60dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:text="@string/party_size"
-        android:textColor="#FF0000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_partyLevel" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_partyLevel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:checkable="false"
+                android:clickable="false"
+                android:text="@string/party_level" />
+
+            <Spinner
+                android:id="@+id/spinner_partyLevel"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:dropDownWidth="match_parent"
+                android:prompt="@string/party_level"
+                android:spinnerMode="dropdown" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_partySize"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:text="@string/party_size" />
+
+            <Spinner
+                android:id="@+id/spinner_partySize"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:dropDownWidth="match_parent"
+                android:prompt="@string/party_size"
+                android:spinnerMode="dropdown" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_difficulty"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:text="@string/difficulty" />
+
+            <Spinner
+                android:id="@+id/spinner_difficulty"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:dropDownWidth="match_parent"
+                android:prompt="@string/difficulty"
+                android:spinnerMode="dropdown" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_encounterType"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:text="@string/encounter_type" />
+
+            <Spinner
+                android:id="@+id/spinner_encounterType"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:dropDownWidth="match_parent"
+                android:prompt="@string/encounter_type"
+                android:spinnerMode="dropdown" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/kobolds" />
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button_buildEncounter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:foregroundTint="#FFFFFF"
+        android:text="@string/build_encounter"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_randomList"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_randomList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:foregroundTint="#FFFFFF"
+        android:text="@string/randomize"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_backCreate"
+        app:layout_constraintStart_toEndOf="@+id/button_buildEncounter"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
 
     <Button
         android:id="@+id/button_backCreate"
-        android:layout_width="360dp"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundTint="#FFFFFF"
@@ -75,92 +171,7 @@
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/button_randomList"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
 
-    <Button
-        android:id="@+id/button_randomList"
-        android:layout_width="360dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:foregroundTint="#FFFFFF"
-        android:text="@string/generate_random_encounters"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/button_backCreate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_buildEncounter"
-        android:layout_width="360dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:foregroundTint="#FFFFFF"
-        android:text="@string/build_encounter"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/button_randomList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_partyLevel"
-        android:layout_width="75dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:text="@string/party_level"
-        android:textColor="#FF0000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner_partyLevel"
-        style="@style/Widget.AppCompat.Spinner.DropDown"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#FF0000"
-        android:dropDownWidth="match_parent"
-        android:prompt="@string/party_level"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_partyLevel"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_encounterType"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="72dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:text="@string/encounter_type"
-        android:textColor="#FF0000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_partyLevel3" />
-
-    <Spinner
-        android:id="@+id/spinner_encounterType"
-        style="@style/Widget.AppCompat.Spinner.DropDown"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="34dp"
-        android:backgroundTint="#FF0000"
-        android:dropDownWidth="match_parent"
-        android:prompt="@string/encounter_type"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_encounterType"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_difficulty" />
 </androidx.constraintlayout.widget.ConstraintLayout>

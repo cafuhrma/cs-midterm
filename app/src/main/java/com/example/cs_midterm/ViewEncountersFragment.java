@@ -49,6 +49,7 @@ public class ViewEncountersFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).saveData(); // save any changes made to myEncounters
+                recyclerAdapter.notifyDataSetChanged(); // stop displaying the removed encounters
             }
         });
     }

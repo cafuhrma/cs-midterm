@@ -48,7 +48,12 @@ public class ViewableEncounterAdapter extends RecyclerView.Adapter<ViewableEncou
         Encounter encounter = repos.get(position); // Get the data item for this position
         ExpandableMonsterAdapter recyclerAdapter = new ExpandableMonsterAdapter(encounter.getMonsters());
         viewHolder.recyclerView.setAdapter(recyclerAdapter);
-        viewHolder.ptHeading.setText("Encounter " + (position+1));
+        if (encounter.getName() != null) {
+            viewHolder.ptHeading.setText(encounter.getName());
+        }
+        else {
+            viewHolder.ptHeading.setText("Encounter " + (position+1));
+        }
 
         //check if view is expanded
         final boolean isExpanded = expandState.get(position);
@@ -66,7 +71,6 @@ public class ViewableEncounterAdapter extends RecyclerView.Adapter<ViewableEncou
             @Override
             public void onClick(View v) {
                 Singleton.getInstance().myEncounters.remove(position);
-                notifyDataSetChanged();
             }
         });
 
@@ -77,13 +81,13 @@ public class ViewableEncounterAdapter extends RecyclerView.Adapter<ViewableEncou
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() != 0) {
-                    encounter.setName((String)s);
-                }
+
             }
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() != 0) {
+                    encounter.setName(s.toString());
+                }
             }
         });
     }

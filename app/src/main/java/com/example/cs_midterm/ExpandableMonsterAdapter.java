@@ -76,7 +76,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         }
         String skillsSaves = "Saving Throws: " + saves + "\nSkills: " + skills + "\n";
         viewHolder.skillsSaves.setText(skillsSaves);
-        if (monster.getDamage_vulnerabilities() != null) {
+        if (!monster.getDamage_vulnerabilities().isEmpty()) {
             String vulnerabilities = "Damage Vulnerabilities: ";
             for (String vulnerability : monster.getDamage_vulnerabilities()) {
                 vulnerabilities += vulnerability + ", ";
@@ -86,7 +86,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         else {
             viewHolder.vulnerabilities.setVisibility(View.GONE);
         }
-        if (monster.getDamage_resistances() != null) {
+        if (!monster.getDamage_resistances().isEmpty()) {
             String resistances = "Damage Resistances: ";
             for (String resistance : monster.getDamage_resistances()) {
                 resistances += resistance + ", ";
@@ -96,7 +96,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         else {
             viewHolder.resistances.setVisibility(View.GONE);
         }
-        if (monster.getDamage_immunities() != null) {
+        if (!monster.getDamage_immunities().isEmpty()) {
             String immunities = "Damage Immunities: ";
             for (String immunity : monster.getDamage_immunities()) {
                 immunities += immunity + ", ";
@@ -106,7 +106,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
         else {
             viewHolder.immunities.setVisibility(View.GONE);
         }
-        if (monster.getCondition_immunities() != null ) {
+        if (!monster.getCondition_immunities().isEmpty() ) {
             String conditionImmunities = "Condition Immunities: ";
             for (ConditionType condition : monster.getCondition_immunities()) {
                 conditionImmunities += condition.getName() + ", ";

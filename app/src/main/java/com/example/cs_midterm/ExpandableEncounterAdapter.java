@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -75,13 +76,13 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() != 0) {
-                    encounter.setName((String)s);
-                }
+
             }
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() != 0) {
+                    encounter.setName(s.toString());
+                }
             }
         });
     }
@@ -95,7 +96,7 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
 
         private TextView ptHeading;
         private RecyclerView recyclerView;
-        private Button saveButton;
+        private CheckBox saveButton;
         public RelativeLayout buttonLayout;
         public LinearLayout expandableLayout;
 
@@ -107,7 +108,7 @@ public class ExpandableEncounterAdapter extends RecyclerView.Adapter<ExpandableE
             recyclerView.setHasFixedSize(true);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
             recyclerView.setLayoutManager(layoutManager);
-            saveButton = (Button) view.findViewById(R.id.button_saveRandomEncounter);
+            saveButton = (CheckBox) view.findViewById(R.id.button_saveRandomEncounter);
             buttonLayout = (RelativeLayout) view.findViewById(R.id.button);
             expandableLayout = (LinearLayout) view.findViewById(R.id.expandableLayout);
         }
