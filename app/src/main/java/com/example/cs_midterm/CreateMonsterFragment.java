@@ -23,10 +23,11 @@ import java.util.HashMap;
 
 public class CreateMonsterFragment extends Fragment {
     // initialize views
-    ListView monsterInfo;
-    ArrayAdapter<String> spinnerAdapter;
-    Spinner infoSpinner;
-    MonsterInfoAdapter infoAdapter;
+    private Monster monster;
+    private ListView monsterInfo;
+    private ArrayAdapter<String> spinnerAdapter;
+    private Spinner infoSpinner;
+    private MonsterInfoAdapter infoAdapter;
 
     @Override
     public View onCreateView(
@@ -39,14 +40,7 @@ public class CreateMonsterFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // return to my monsters screen
-        view.findViewById(R.id.button_backCreateMonster).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(CreateMonsterFragment.this)
-                        .navigate(R.id.action_createMonsterFragment_to_viewMonstersFragment);
-            }
-        });
+        monster = new Monster();
 
         // monster info spinner
         infoSpinner = view.findViewById(R.id.spinner_monsterInfo);
@@ -61,21 +55,7 @@ public class CreateMonsterFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long itemID) {
                 if (position >= 0 && position < getResources().getStringArray(R.array.monsterTabs).length) {
                     getSelectedCategoryData(position);
-//                    if (infoSpinner.getPrompt() == "BASIC INFO") {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_BASIC);
-//                    } else if (infoSpinner.getPrompt() == "ATTRIBUTES") {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_ATTRIBUTES);
-//                    } else if (infoSpinner.getPrompt() == "SAVES") {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_SAVES);
-//                    } else if (infoSpinner.getPrompt() == "SKILLS") {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_SKILLS);
-//                    } else if (infoSpinner.getPrompt() == "OTHER INFO") {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_OTHER);
-//                    } else if (infoSpinner.getPrompt() == "FEATURES") {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_FEATURES);
-//                    } else {
-//                        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_ACTIONS);
-//                    }
+
                 } else {
                     Toast.makeText(getActivity(), "Selected Category Does not Exist",
                             Toast.LENGTH_SHORT).show();
@@ -87,42 +67,57 @@ public class CreateMonsterFragment extends Fragment {
 
             }
         });
-//        infoAdapter = new MonsterInfoAdapter(getActivity(), R.id.tableLayout, getInfoList());
-//        monsterInfo.setAdapter(infoAdapter);
-    }
-    // TODO finish setting up the category filter
-    // resource: https://camposha.info/android-filter-listview-using-a-spinner-dropdown/
-    private void getSelectedCategoryData(int categoryID) {
-        //arraylist to hold selected cosmic bodies
-        ArrayList<ListViewItem> categories = new ArrayList<>();
-        if (categoryID == 0)
-        {
-            infoAdapter = new MonsterInfoAdapter(getActivity(), R.id.tableLayout, getInfoList());
-        }
-        else {
-            //filter by id
-            for (ListViewItem item : getInfoList()) {
-                if (item.getType() == categoryID) {
-                    categories.add(item);
-                }
+
+        // save created monster
+        view.findViewById(R.id.button_saveMonster).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Singleton.getInstance().myMonsters.add(monster);
             }
-            //instatiate adapter a
-            infoAdapter = new MonsterInfoAdapter(getActivity(), R.id.tableLayout, getInfoList());
-        }
+        });
+
+        // return to my monsters screen
+        view.findViewById(R.id.button_backCreateMonster).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(CreateMonsterFragment.this)
+                        .navigate(R.id.action_createMonsterFragment_to_viewMonstersFragment);
+            }
+        });
+    }
+
+    private void getSelectedCategoryData(int categoryID) {
+        //instatiate adapter a
+        infoAdapter = new MonsterInfoAdapter(getActivity(), R.id.tableLayout, getInfoList(categoryID));
         //set the adapter to GridView
         monsterInfo.setAdapter(infoAdapter);
     }
-    private ListViewItem[] getInfoList() {
-        final ListViewItem[] info = new ListViewItem[7];
-        // initialize the array
-        info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_BASIC);
-        info[1] = new ListViewItem(MonsterInfoAdapter.ITEM_ATTRIBUTES);
-        info[2] = new ListViewItem(MonsterInfoAdapter.ITEM_SAVES);
-        info[3] = new ListViewItem(MonsterInfoAdapter.ITEM_SKILLS);
-        info[4] = new ListViewItem(MonsterInfoAdapter.ITEM_OTHER);
-        info[5] = new ListViewItem(MonsterInfoAdapter.ITEM_FEATURES);
-        info[6] = new ListViewItem(MonsterInfoAdapter.ITEM_ACTIONS);
 
+    private ListViewItem[] getInfoList(int categoryID) {
+        final ListViewItem[] info = new ListViewItem[1];
+        // initialize the array
+        switch (categoryID) {
+            case 0:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_BASIC);
+                break;
+            case 1:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_ATTRIBUTES);
+                break;
+            case 2:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_SAVES);
+                break;
+            case 3:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_SKILLS);
+                break;
+            case 4:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_OTHER);
+                break;
+            case 5:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_FEATURES);
+                break;
+            case 6:
+                info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_ACTIONS);
+        }
         return info;
     }
 }
