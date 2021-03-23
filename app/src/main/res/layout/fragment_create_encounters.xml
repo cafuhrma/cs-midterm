@@ -29,10 +29,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/dark_red"
                 android:checkable="false"
                 android:clickable="false"
-                android:text="@string/party_level" />
+                android:text="@string/party_level"
+                android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinner_partyLevel"
@@ -40,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/party_level"
                 android:spinnerMode="dropdown" />
@@ -55,8 +56,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
-                android:text="@string/party_size" />
+                android:backgroundTint="@color/dark_red"
+                android:text="@string/party_size"
+                android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinner_partySize"
@@ -64,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/party_size"
                 android:spinnerMode="dropdown" />
@@ -79,8 +81,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
-                android:text="@string/difficulty" />
+                android:backgroundTint="@color/dark_red"
+                android:text="@string/difficulty"
+                android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinner_difficulty"
@@ -88,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/difficulty"
                 android:spinnerMode="dropdown" />
@@ -103,8 +106,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
-                android:text="@string/encounter_type" />
+                android:backgroundTint="@color/dark_red"
+                android:text="@string/encounter_type"
+                android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/spinner_encounterType"
@@ -112,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/encounter_type"
                 android:spinnerMode="dropdown" />
@@ -132,10 +136,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/dark_red"
         android:foregroundTint="#FFFFFF"
         android:text="@string/build_encounter"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_randomList"
         app:layout_constraintStart_toStartOf="parent" />
@@ -145,17 +149,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/dark_red"
         android:foregroundTint="#FFFFFF"
         android:text="@string/randomize"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backCreate"
-        app:layout_constraintStart_toEndOf="@+id/button_buildEncounter"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+        app:layout_constraintStart_toEndOf="@+id/button_buildEncounter" />
 
     <Button
         android:id="@+id/button_backCreate"
@@ -165,10 +167,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/dark_red"
         android:foregroundTint="#FFFFFF"
         android:text="@string/back"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_randomList"

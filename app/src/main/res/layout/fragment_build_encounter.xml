@@ -39,8 +39,8 @@
         android:layout_marginBottom="8dp"
         android:foregroundTint="#FFFFFF"
         android:text="@string/save_encounter"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/dark_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backBuildEncounter"
         app:layout_constraintStart_toStartOf="parent" />
@@ -54,8 +54,8 @@
         android:layout_marginBottom="8dp"
         android:foregroundTint="#FFFFFF"
         android:text="@string/back"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FF0000"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/dark_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_saveEncounter" />

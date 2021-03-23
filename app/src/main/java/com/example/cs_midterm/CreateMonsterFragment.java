@@ -73,6 +73,7 @@ public class CreateMonsterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Singleton.getInstance().myMonsters.add(monster);
+                ((MainActivity)getActivity()).saveData(); // save changes made to myMonsters
             }
         });
 
