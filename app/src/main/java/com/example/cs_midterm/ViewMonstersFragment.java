@@ -35,6 +35,11 @@ public class ViewMonstersFragment extends Fragment {
         recyclerAdapter = new ExpandableMonsterAdapter(Singleton.getInstance().myMonsters);
         recyclerView.setAdapter(recyclerAdapter);
 
+        if (Singleton.getInstance().myMonsters.isEmpty()) {
+            view.findViewById(R.id.linearLayout_viewMonsters).setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+
         // return to home screen
         view.findViewById(R.id.button_backMonsters).setOnClickListener(new View.OnClickListener() {
             @Override

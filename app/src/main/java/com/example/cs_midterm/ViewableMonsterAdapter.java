@@ -11,26 +11,22 @@ import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMonsterAdapter.ViewHolder> implements Filterable {
+public class ViewableMonsterAdapter extends RecyclerView.Adapter<ViewableMonsterAdapter.ViewHolder> implements Filterable {
     private List<Monster> repos;
     private List<Monster> reposFull; // full list of monsters
     private ArrayList<Monster> reposAdded; // monsters added to the encounter
     private SparseBooleanArray expandState = new SparseBooleanArray();
     private Context context;
 
-    public ExpandableMonsterAdapter(List<Monster> repos) {
+    public ViewableMonsterAdapter(List<Monster> repos) {
         this.repos = repos;
         reposFull = new ArrayList<>(repos);
         reposAdded = new ArrayList<>();
@@ -41,14 +37,14 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
     }
 
     @Override
-    public ExpandableMonsterAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewableMonsterAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         this.context = viewGroup.getContext();
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.expandable_monster, viewGroup, false);
-        return new ExpandableMonsterAdapter.ViewHolder(view);
+        return new ViewableMonsterAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ExpandableMonsterAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewableMonsterAdapter.ViewHolder viewHolder, final int position) {
 
         viewHolder.setIsRecyclable(false);
 
@@ -181,15 +177,16 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
             }
         });
 
-        // add monster to encounter
-        viewHolder.addMonster.setOnClickListener(new View.OnClickListener() {
+        // remove monster from encounter
+        viewHolder.removeMonster.setVisibility(View.GONE);
+        viewHolder.removeMonster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (viewHolder.addMonster.isChecked()) {
-                    reposAdded.add(monster);
+                if (viewHolder.removeMonster.isChecked()) {
+                    reposAdded.remove(monster);
                 }
                 else {
-                    reposAdded.remove(monster);
+                    reposAdded.add(monster);
                 }
             }
         });
@@ -204,7 +201,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
 
         private TextView tvHeading;
         private TextView tvSubheading;
-        private CheckBox addMonster;
+        private CheckBox removeMonster;
         public RelativeLayout buttonLayout;
         public LinearLayout expandableLayout;
         private TextView name;
@@ -234,7 +231,7 @@ public class ExpandableMonsterAdapter extends RecyclerView.Adapter<ExpandableMon
 
             tvHeading = view.findViewById(R.id.tv_heading);
             tvSubheading = view.findViewById(R.id.tv_subheading);
-            addMonster = view.findViewById(R.id.button_addMonster);
+            removeMonster = view.findViewById(R.id.button_addMonster);
             buttonLayout = view.findViewById(R.id.button);
             expandableLayout = view.findViewById(R.id.expandableLayout);
             name = view.findViewById(R.id.tv_name);

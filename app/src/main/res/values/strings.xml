@@ -93,6 +93,10 @@
     <string name="todo">TODO</string>
     <string name="save">Save</string>
     <string name="details">details</string>
+    <string name="emptyEncounters">Oh no! A Kobold has stolen your encounters!</string>
+    <string name="kobold_thief">kobold thief</string>
+    <string name="emptyMonsters">Oh no! A Paladin has slain your monsters!</string>
+    <string name="paladin">paladin</string>
 
     <string-array name="partyLevels">
         <item>1</item>

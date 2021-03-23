@@ -35,6 +35,11 @@ public class ViewEncountersFragment extends Fragment {
         recyclerAdapter = new ViewableEncounterAdapter(Singleton.getInstance().myEncounters);
         recyclerView.setAdapter(recyclerAdapter);
 
+        if (Singleton.getInstance().myEncounters.isEmpty()) {
+            view.findViewById(R.id.linearLayout_viewEncounters).setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+
         // back button to return to home screen
         view.findViewById(R.id.button_backEncounters).setOnClickListener(new View.OnClickListener() {
             @Override

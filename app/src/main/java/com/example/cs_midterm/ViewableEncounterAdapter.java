@@ -46,7 +46,7 @@ public class ViewableEncounterAdapter extends RecyclerView.Adapter<ViewableEncou
         viewHolder.setIsRecyclable(false);
 
         Encounter encounter = repos.get(position); // Get the data item for this position
-        ExpandableMonsterAdapter recyclerAdapter = new ExpandableMonsterAdapter(encounter.getMonsters());
+        ViewableMonsterAdapter recyclerAdapter = new ViewableMonsterAdapter(encounter.getMonsters());
         viewHolder.recyclerView.setAdapter(recyclerAdapter);
         if (encounter.getName() != null) {
             viewHolder.ptHeading.setText(encounter.getName());
@@ -99,7 +99,7 @@ public class ViewableEncounterAdapter extends RecyclerView.Adapter<ViewableEncou
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView ptHeading;
+        private EditText ptHeading;
         private RecyclerView recyclerView;
         private Button removeButton;
         public RelativeLayout buttonLayout;
