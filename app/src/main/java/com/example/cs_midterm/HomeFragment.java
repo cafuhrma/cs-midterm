@@ -16,14 +16,13 @@ public class HomeFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        Singleton.getInstance(); // fetch data
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
     // switch from home screen to my encounters screen
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        Singleton.getInstance(); // fetch data
 
         view.findViewById(R.id.button_my_encounters).setOnClickListener(new View.OnClickListener() {
             @Override

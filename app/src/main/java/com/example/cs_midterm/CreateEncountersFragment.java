@@ -42,7 +42,7 @@ public class CreateEncountersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Singleton.getInstance().fillList();
+        Singleton.getInstance();
 
         // Default encounter values
         Singleton.getInstance().encounter.setPartyLevel(3);

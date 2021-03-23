@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:checkable="false"
                 android:clickable="false"
                 android:text="@string/party_level"
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/party_level"
                 android:spinnerMode="dropdown" />
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:text="@string/party_size"
                 android:textColor="@color/white" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/party_size"
                 android:spinnerMode="dropdown" />
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:text="@string/difficulty"
                 android:textColor="@color/white" />
 
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/difficulty"
                 android:spinnerMode="dropdown" />
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:text="@string/encounter_type"
                 android:textColor="@color/white" />
 
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_red"
+                android:backgroundTint="@color/red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/encounter_type"
                 android:spinnerMode="dropdown" />
