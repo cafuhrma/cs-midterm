@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
                 android:layout_toStartOf="@+id/button"
+                android:buttonTint="@color/dark_red"
                 android:text="Remove" />
 
             <RelativeLayout
