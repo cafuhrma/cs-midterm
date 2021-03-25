@@ -14,7 +14,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/stat_block_background"
         app:layout_constraintBottom_toTopOf="@+id/button_buildEncounter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:checkable="false"
                 android:clickable="false"
                 android:text="@string/party_level"
@@ -41,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/party_level"
                 android:spinnerMode="dropdown" />
@@ -56,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:text="@string/party_size"
                 android:textColor="@color/white" />
 
@@ -66,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/party_size"
                 android:spinnerMode="dropdown" />
@@ -81,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:text="@string/difficulty"
                 android:textColor="@color/white" />
 
@@ -91,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/difficulty"
                 android:spinnerMode="dropdown" />
@@ -106,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:text="@string/encounter_type"
                 android:textColor="@color/white" />
 
@@ -116,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/dark_red"
                 android:dropDownWidth="match_parent"
                 android:prompt="@string/encounter_type"
                 android:spinnerMode="dropdown" />
@@ -124,8 +123,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/kobolds" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/goblin_howdah" />
 
     </TableLayout>
 
