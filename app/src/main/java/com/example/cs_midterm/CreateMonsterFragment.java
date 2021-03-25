@@ -6,15 +6,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Array;
@@ -74,6 +77,7 @@ public class CreateMonsterFragment extends Fragment {
             public void onClick(View v) {
                 Singleton.getInstance().myMonsters.add(monster);
                 ((MainActivity)getActivity()).saveData(); // save changes made to myMonsters
+                showToast(v);
             }
         });
 
@@ -120,5 +124,22 @@ public class CreateMonsterFragment extends Fragment {
                 info[0] = new ListViewItem(MonsterInfoAdapter.ITEM_ACTIONS);
         }
         return info;
+    }
+
+    public void showToast(View v) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) v.findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_text);
+        ImageView toastImage = layout.findViewById(R.id.toast_image);
+
+        toastText.setText("Monster Saved");
+        toastImage.setImageResource(R.drawable.ic_baseline_save_24);
+
+        Toast toast = new Toast(getContext());
+        toast.setGravity(Gravity.CENTER, 0, -10);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

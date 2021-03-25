@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class BuildEncounterFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -84,6 +88,7 @@ public class BuildEncounterFragment extends Fragment {
                 encounter.setMonsters(recyclerAdapter.getReposAdded());
                 Singleton.getInstance().myEncounters.add(encounter);
                 ((MainActivity)getActivity()).saveData(); // save any changes made to myEncounters
+                showToast(v);
             }
         });
     }
@@ -108,5 +113,22 @@ public class BuildEncounterFragment extends Fragment {
             }
         });
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    public void showToast(View v) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) v.findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_text);
+        ImageView toastImage = layout.findViewById(R.id.toast_image);
+
+        toastText.setText("Encounter Saved");
+        toastImage.setImageResource(R.drawable.ic_baseline_save_24);
+
+        Toast toast = new Toast(getContext());
+        toast.setGravity(Gravity.CENTER, 0, -10);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

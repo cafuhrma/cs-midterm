@@ -1,9 +1,13 @@
 package com.example.cs_midterm;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -55,7 +59,25 @@ public class ViewEncountersFragment extends Fragment {
             public void onClick(View v) {
                 ((MainActivity)getActivity()).saveData(); // save any changes made to myEncounters
                 recyclerAdapter.notifyDataSetChanged(); // stop displaying the removed encounters
+                showToast(v);
             }
         });
+    }
+
+    public void showToast(View v) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) v.findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_text);
+        ImageView toastImage = layout.findViewById(R.id.toast_image);
+
+        toastText.setText("Changes Saved");
+        toastImage.setImageResource(R.drawable.ic_baseline_save_24);
+
+        Toast toast = new Toast(getContext());
+        toast.setGravity(Gravity.CENTER, 0, -10);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }
