@@ -102,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="creature type"
+                    android:textColor="@color/black"
                     android:textStyle="italic" />
 
                 <View
@@ -114,7 +115,8 @@
                     android:id="@+id/tv_acHp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <View
                     android:id="@+id/view_divider2"
@@ -126,7 +128,8 @@
                     android:id="@+id/tv_abilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <View
                     android:id="@+id/view_divider3"
@@ -138,49 +141,57 @@
                     android:id="@+id/tv_skillsSaves"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_vulnerabilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_resistances"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_immunities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_conditionImmunities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_senses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_languages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_cr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <View
                     android:id="@+id/view_divider4"
@@ -192,7 +203,8 @@
                     android:id="@+id/tv_features"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Features" />
+                    android:text="Features"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_actionsDisplay"
@@ -213,7 +225,8 @@
                     android:id="@+id/tv_actions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Actions" />
+                    android:text="Actions"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_reactionsDisplay"
@@ -234,7 +247,8 @@
                     android:id="@+id/tv_reactions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reactions" />
+                    android:text="Reactions"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_legendaryDisplay"
@@ -255,7 +269,8 @@
                     android:id="@+id/tv_legendaryActions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Legendary Actions" />
+                    android:text="Legendary Actions"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 

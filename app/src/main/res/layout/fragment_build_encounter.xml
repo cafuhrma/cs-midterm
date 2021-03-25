@@ -18,8 +18,13 @@
         android:layout_marginBottom="8dp"
         android:background="@color/white"
         android:ems="10"
-        android:hint="@string/encounter_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:text="@string/untitled_encounter"
+        android:textColor="@color/black"
+        android:textColorHint="@color/background"
+        android:textColorLink="@color/red"
+        android:textCursorDrawable="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_buildEncounters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,12 +52,13 @@
         app:backgroundTint="@color/dark_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backBuildEncounter"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_buildEncounters" />
 
     <Button
         android:id="@+id/button_backBuildEncounter"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -62,6 +68,7 @@
         app:backgroundTint="@color/dark_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_saveEncounter" />
+        app:layout_constraintStart_toEndOf="@+id/button_saveEncounter"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_buildEncounters" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

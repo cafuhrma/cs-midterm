@@ -44,7 +44,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_myMonsters"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="750dp"
         app:layout_constraintBottom_toTopOf="@+id/button_createMonster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,31 +53,35 @@
     <Button
         android:id="@+id/button_backMonsters"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/dark_red"
         android:text="@string/back"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_createMonster" />
+        app:layout_constraintStart_toEndOf="@+id/button_createMonster"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_myMonsters" />
 
     <Button
         android:id="@+id/button_createMonster"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/dark_red"
         android:text="@string/create_monster"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_backMonsters"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_myMonsters" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

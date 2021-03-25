@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Encounter Builder</string>
+    <string name="app_name">Combat Constructor 5e</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="home_fragment_label">First Fragment</string>
@@ -97,6 +97,7 @@
     <string name="kobold_thief">kobold thief</string>
     <string name="emptyMonsters">Oh no! A Paladin has slain your monsters!</string>
     <string name="paladin">paladin</string>
+    <string name="untitled_encounter">Untitled Encounter</string>
 
     <string-array name="partyLevels">
         <item>1</item>
